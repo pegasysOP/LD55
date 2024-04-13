@@ -21,6 +21,10 @@ public class RecipeComponent : MonoBehaviour, IPointerEnterHandler, IPointerExit
     /// Called when a recipe component is clicked
     /// </summary>
     public event EventHandler<Recipe> OnClick;
+    /// <summary>
+    /// Called when the mouse goes over a recipe component
+    /// </summary>
+    public event EventHandler<Recipe> OnHover;
 
     private Recipe recipe;
     private Coroutine hoverCoroutine;
@@ -90,6 +94,11 @@ public class RecipeComponent : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (recipe != null)
+            OnHover.Invoke(this, recipe);
+        else
+            Debug.LogError("There is no recipe on this component");
+
         if (hoverCoroutine != null)
         {
             StopCoroutine(hoverCoroutine);

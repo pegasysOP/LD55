@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class RecipeSelectionPanel : MonoBehaviour
 {
     [SerializeField] private RecipeComponent recipeComponentPrefab;
+    [SerializeField] private Transform recipeContainer;
+    [SerializeField] private TextMeshProUGUI topText;
 
     private List<RecipeComponent> recipeComponents;
 
@@ -24,11 +27,17 @@ public class RecipeSelectionPanel : MonoBehaviour
 
     private void CreateRecipeComponent(Recipe recipe)
     {
-        RecipeComponent component = Instantiate(recipeComponentPrefab, transform);
+        RecipeComponent component = Instantiate(recipeComponentPrefab, recipeContainer);
         component.Init(recipe);
+        component.OnHover += OnRecipeHover;
         component.OnClick += OnRecipeClicked;
 
         recipeComponents.Add(component);
+    }
+
+    private void OnRecipeHover(object sender, Recipe recipe)
+    {
+        topText.text = recipe.Name;
     }
 
     private void OnRecipeClicked(object sender, Recipe recipe)
@@ -45,6 +54,7 @@ public class RecipeSelectionPanel : MonoBehaviour
         {
             foreach (RecipeComponent recipeComponent in recipeComponents)
             {
+                recipeComponent.OnHover -= OnRecipeHover;
                 recipeComponent.OnClick -= OnRecipeClicked;
                 Destroy(recipeComponent.gameObject);
             }

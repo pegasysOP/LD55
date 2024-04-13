@@ -8,7 +8,7 @@ public class Recipe
     [SerializeField] private Sprite icon;
     [SerializeField] private MinigameScore score;
 
-
+    public string Name { get { return name; } }
     public Minigame Minigame { get { return minigame; } }
     public Sprite Icon { get { return icon; } }
 
