@@ -15,7 +15,6 @@ public enum MinigameScore
 
 public abstract class Minigame : MonoBehaviour
 {
-    public Timer timer;
     public List<MinigameStep> steps;
 
     /// <summary>

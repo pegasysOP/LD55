@@ -36,18 +36,13 @@ public class GolemMinigame : Minigame
     // Start is called before the first frame update
     void Start()
     {
-        timer.SetTime(5);
-        timer.Play();
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(timer.GetTime() < 0) 
-        {
             //End minigame
-            OnMinigameOver.Invoke(this, MinigameScore.None);
-            
-        }
+            OnMinigameOver.Invoke(this, MinigameScore.Bronze);
     }
 }
