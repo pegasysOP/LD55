@@ -27,6 +27,8 @@ public class RecipeSelectionPanel : MonoBehaviour
         RecipeComponent component = Instantiate(recipeComponentPrefab, transform);
         component.Init(recipe);
         component.OnClick += OnRecipeClicked;
+
+        recipeComponents.Add(component);
     }
 
     private void OnRecipeClicked(object sender, Recipe recipe)
@@ -39,12 +41,12 @@ public class RecipeSelectionPanel : MonoBehaviour
     private void ClearRecipeComponents()
     {
         // delete old components
-        if (recipeComponents != null)
+        if (recipeComponents != null && recipeComponents.Count > 0)
         {
             foreach (RecipeComponent recipeComponent in recipeComponents)
             {
                 recipeComponent.OnClick -= OnRecipeClicked;
-                Destroy(recipeComponent);
+                Destroy(recipeComponent.gameObject);
             }
         }
 

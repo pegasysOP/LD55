@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     private void OnMinigameOver(object sender, MinigameScore score)
     {
         minigameInstance.OnMinigameOver -= OnMinigameOver;
-        Destroy(minigameInstance);
+        Destroy(minigameInstance.gameObject);
 
         // TODO: not sure if the correct class instance will be changed or if it's a clone, will need to test once a minigame is in
         foreach (Recipe recipe in recipes)
