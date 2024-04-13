@@ -10,7 +10,7 @@ public class RecipeSelectionPanel : MonoBehaviour
 
 
     /// <summary>
-    /// Thrown when the minigame is over, gives the score achieved
+    /// Called when a recipe component is clicked
     /// </summary>
     public event EventHandler<Recipe> OnRecipeChosen;
 
@@ -26,6 +26,14 @@ public class RecipeSelectionPanel : MonoBehaviour
     {
         RecipeComponent component = Instantiate(recipeComponentPrefab, transform);
         component.Init(recipe);
+        component.OnClick += OnRecipeClicked;
+    }
+
+    private void OnRecipeClicked(object sender, Recipe recipe)
+    {
+        // do animations etc.
+
+        OnRecipeChosen(this, recipe);
     }
 
     private void ClearRecipeComponents()
@@ -34,7 +42,10 @@ public class RecipeSelectionPanel : MonoBehaviour
         if (recipeComponents != null)
         {
             foreach (RecipeComponent recipeComponent in recipeComponents)
+            {
+                recipeComponent.OnClick -= OnRecipeClicked;
                 Destroy(recipeComponent);
+            }
         }
 
         recipeComponents = new List<RecipeComponent>();
