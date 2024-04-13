@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class FurnaceMinigameStep : MinigameStep
 {
-    public override event EventHandler<MinigameScore> OnMinigameStepOver;
+    public override event EventHandler<MedalType> OnMinigameStepOver;
 
     public Slider furnaceHeatSlider;
 
@@ -33,7 +33,7 @@ public class FurnaceMinigameStep : MinigameStep
         if (furnaceHeatSlider.value == 0 || furnaceHeatSlider.value > furnaceHeatSlider.maxValue - 0.1)
         {
             //Minigame should fail if the heat completely dissapears or reaches the maximum
-            OnMinigameStepOver.Invoke(this, MinigameScore.None);
+            OnMinigameStepOver.Invoke(this, MedalType.None);
         }
 
         timer -= Time.deltaTime;
@@ -41,36 +41,36 @@ public class FurnaceMinigameStep : MinigameStep
         {
             if(furnaceHeatSlider.value < 10 && furnaceHeatSlider.value > 9)
             {
-                OnMinigameStepOver.Invoke(this, MinigameScore.Bronze);
+                OnMinigameStepOver.Invoke(this, MedalType.Bronze);
             }
             if (furnaceHeatSlider.value < 9 && furnaceHeatSlider.value > 8)
             {
-                OnMinigameStepOver.Invoke(this, MinigameScore.Silver);
+                OnMinigameStepOver.Invoke(this, MedalType.Silver);
             }
             if (furnaceHeatSlider.value < 8 && furnaceHeatSlider.value > 7)
             {
-                OnMinigameStepOver.Invoke(this, MinigameScore.Gold);
+                OnMinigameStepOver.Invoke(this, MedalType.Gold);
             }
             if (furnaceHeatSlider.value < 7 && furnaceHeatSlider.value > 6)
             {
-                OnMinigameStepOver.Invoke(this, MinigameScore.Jade);
+                OnMinigameStepOver.Invoke(this, MedalType.Jade);
             }
 
             if (furnaceHeatSlider.value < 6 && furnaceHeatSlider.value > 5)
             {
-                OnMinigameStepOver.Invoke(this, MinigameScore.Gold);
+                OnMinigameStepOver.Invoke(this, MedalType.Gold);
             }
             if (furnaceHeatSlider.value < 5 && furnaceHeatSlider.value > 4)
             {
-                OnMinigameStepOver.Invoke(this, MinigameScore.Silver);
+                OnMinigameStepOver.Invoke(this, MedalType.Silver);
             }
             if (furnaceHeatSlider.value < 4 && furnaceHeatSlider.value > 3)
             {
-                OnMinigameStepOver.Invoke(this, MinigameScore.Bronze);
+                OnMinigameStepOver.Invoke(this, MedalType.Bronze);
             }
             if (furnaceHeatSlider.value < 3 && furnaceHeatSlider.value > 0)
             {
-                OnMinigameStepOver.Invoke(this, MinigameScore.None);
+                OnMinigameStepOver.Invoke(this, MedalType.None);
             }
         }
         HandleInput();
@@ -81,7 +81,7 @@ public class FurnaceMinigameStep : MinigameStep
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            OnMinigameStepOver.Invoke(this, MinigameScore.Silver);
+            OnMinigameStepOver.Invoke(this, MedalType.Silver);
         }
         if (Input.GetMouseButtonDown(0))
         {

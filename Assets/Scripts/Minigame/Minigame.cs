@@ -2,15 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum MinigameScore
-{
-    None,
-    Bronze,
-    Silver,
-    Gold,
-    Jade
-}
-
 public abstract class Minigame : MonoBehaviour
 {
     [SerializeField] private List<MinigameStep> steps;
@@ -20,7 +11,7 @@ public abstract class Minigame : MonoBehaviour
     /// <summary>
     /// Thrown when the minigame is over, gives the score achieved
     /// </summary>
-    public event EventHandler<MinigameScore> OnMinigameOver;
+    public event EventHandler<MedalType> OnMinigameOver;
 
     /// <summary>
     /// Starts the minigame
@@ -48,7 +39,7 @@ public abstract class Minigame : MonoBehaviour
         return true;
     }
 
-    protected virtual void OnMinigameStepOver(object sender, MinigameScore score)
+    protected virtual void OnMinigameStepOver(object sender, MedalType score)
     {
         minigameStepInstance.OnMinigameStepOver -= OnMinigameStepOver;
         Destroy(minigameStepInstance.gameObject);

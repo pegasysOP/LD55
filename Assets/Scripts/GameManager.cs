@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
             Debug.LogError("There is no minigame for this recipe");
     }
 
-    private void OnMinigameOver(object sender, MinigameScore score)
+    private void OnMinigameOver(object sender, MedalType score)
     {
         minigameInstance.OnMinigameOver -= OnMinigameOver;
         Destroy(minigameInstance.gameObject);

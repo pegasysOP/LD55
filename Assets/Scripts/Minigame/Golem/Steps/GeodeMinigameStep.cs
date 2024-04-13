@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GeodeMinigameStep : MinigameStep
 {
-    public override event EventHandler<MinigameScore> OnMinigameStepOver;
+    public override event EventHandler<MedalType> OnMinigameStepOver;
 
     public override bool StartMinigameStep()
     {
@@ -23,7 +23,7 @@ public class GeodeMinigameStep : MinigameStep
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Crush Geode Minigame step complete");
-            OnMinigameStepOver.Invoke(this, MinigameScore.Bronze);
+            OnMinigameStepOver.Invoke(this, MedalType.Bronze);
         }
     }
 }

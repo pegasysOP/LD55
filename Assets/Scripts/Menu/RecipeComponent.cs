@@ -36,7 +36,7 @@ public class RecipeComponent : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
         recipeIcon.sprite = recipe.Icon;
 
-        if (recipe.GetScore() != MinigameScore.None )
+        if (recipe.GetScore() != MedalType.None )
             ratingIcon.sprite = GetRatingSprite(recipe.GetScore());
         else
             ratingIcon.gameObject.SetActive(false);
@@ -44,17 +44,17 @@ public class RecipeComponent : MonoBehaviour, IPointerEnterHandler, IPointerExit
         button.onClick.AddListener(OnButtonClick);
     }
 
-    private Sprite GetRatingSprite(MinigameScore score)
+    private Sprite GetRatingSprite(MedalType score)
     {
         switch (score)
         {
-            case MinigameScore.Jade:
+            case MedalType.Jade:
                 return jadeImage;
-            case MinigameScore.Gold: 
+            case MedalType.Gold: 
                 return goldImage;
-            case MinigameScore.Silver:
+            case MedalType.Silver:
                 return silverImage;
-            case MinigameScore.Bronze:
+            case MedalType.Bronze:
                 return bronzeImage;
             default:
                 return null;
