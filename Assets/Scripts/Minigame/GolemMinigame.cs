@@ -63,7 +63,7 @@ public class GolemMinigame : Minigame
     private void OnMinigameStepOver(object sender, MinigameScore score)
     {
         minigameStepInstance.OnMinigameStepOver -= OnMinigameStepOver;
-        Destroy(minigameStepInstance);
+        Destroy(minigameStepInstance.gameObject);
 
         //If there are more steps then get the next step and start it 
         if(steps.Count > 0)
