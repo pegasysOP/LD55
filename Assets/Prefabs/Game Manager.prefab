@@ -47,7 +47,7 @@ MonoBehaviour:
   recipeSelectionPanel: {fileID: 0}
   recipes:
   - minigame: {fileID: -1619836453747280129, guid: 854715a70a918a446865e067e3187ae9, type: 3}
-    icon: {fileID: 21300000, guid: 3e436477b8d505b47a56058dfd0a7c46, type: 3}
+    icon: {fileID: 21300000, guid: 47c14add384e0984496acce4b6c32490, type: 3}
     score: 0
   - minigame: {fileID: 0}
     icon: {fileID: 21300000, guid: fd371bbee4c7147409a910b98c31aad7, type: 3}
