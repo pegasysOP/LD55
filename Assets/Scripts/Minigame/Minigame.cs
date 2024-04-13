@@ -17,7 +17,7 @@ public abstract class Minigame : MonoBehaviour
     /// <summary>
     /// Thrown when the minigame is over, gives the score achieved
     /// </summary>
-    public event EventHandler<MinigameScore> OnMinigameOver;
+    public abstract event EventHandler<MinigameScore> OnMinigameOver;
 
     /// <summary>
     /// Starts the minigame

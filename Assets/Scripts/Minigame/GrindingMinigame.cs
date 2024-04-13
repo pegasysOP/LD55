@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class NewBehaviourScript : Minigame
 {
+    public override event EventHandler<MinigameScore> OnMinigameOver;
+
     public override bool StartMinigame()
     {
         throw new System.NotImplementedException();
@@ -22,6 +25,8 @@ public class NewBehaviourScript : Minigame
         if(timer.GetTime() < 0) 
         {
             //End minigame
+            OnMinigameOver.Invoke(this, MinigameScore.None);
+            
         }
     }
 }
