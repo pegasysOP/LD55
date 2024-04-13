@@ -30,8 +30,6 @@ public class FurnaceMinigameStep : MinigameStep
     // Update is called once per frame
     void Update()
     {
-
-        Debug.Log(furnaceHeatSlider.value);
         furnaceHeatSlider.value -= Time.deltaTime;
 
         if (furnaceHeatSlider.value == 0 || furnaceHeatSlider.value > furnaceHeatSlider.maxValue - 0.1)
@@ -43,8 +41,41 @@ public class FurnaceMinigameStep : MinigameStep
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
-            //Get the sliders value and score accordingly
-            OnMinigameStepOver.Invoke(this, MinigameScore.Bronze);
+            if(furnaceHeatSlider.value < 10 && furnaceHeatSlider.value > 9)
+            {
+                OnMinigameStepOver.Invoke(this, MinigameScore.Bronze);
+            }
+            if (furnaceHeatSlider.value < 9 && furnaceHeatSlider.value > 8)
+            {
+                OnMinigameStepOver.Invoke(this, MinigameScore.Silver);
+            }
+            if (furnaceHeatSlider.value < 8 && furnaceHeatSlider.value > 7)
+            {
+                OnMinigameStepOver.Invoke(this, MinigameScore.Gold);
+            }
+            if (furnaceHeatSlider.value < 7 && furnaceHeatSlider.value > 6)
+            {
+                OnMinigameStepOver.Invoke(this, MinigameScore.Jade);
+            }
+
+            if (furnaceHeatSlider.value < 6 && furnaceHeatSlider.value > 5)
+            {
+                OnMinigameStepOver.Invoke(this, MinigameScore.Gold);
+            }
+            if (furnaceHeatSlider.value < 5 && furnaceHeatSlider.value > 4)
+            {
+                OnMinigameStepOver.Invoke(this, MinigameScore.Silver);
+            }
+            if (furnaceHeatSlider.value < 4 && furnaceHeatSlider.value > 3)
+            {
+                OnMinigameStepOver.Invoke(this, MinigameScore.Bronze);
+            }
+            if (furnaceHeatSlider.value < 3 && furnaceHeatSlider.value > 0)
+            {
+                OnMinigameStepOver.Invoke(this, MinigameScore.None);
+            }
+
+
         }
         HandleInput();
         
