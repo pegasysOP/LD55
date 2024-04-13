@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7000336672407448161}
   - component: {fileID: -1619836453747280129}
   m_Layer: 0
-  m_Name: GolemMinigame
+  m_Name: Golem Minigame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class CrushGeodeMinigameStep : MinigameStep
+public class GeodeMinigameStep : MinigameStep
 {
     public override event EventHandler<MinigameScore> OnMinigameStepOver;
 

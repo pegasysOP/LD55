@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 5497833755877502502}
   - component: {fileID: -2537545388618013434}
   m_Layer: 0
-  m_Name: CrushGeodeMinigameStep
+  m_Name: Geode Step
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
