@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
 
         minigameInstance = Instantiate(minigame);
         minigameInstance.OnMinigameOver += OnMinigameOver;
+        minigameInstance.StartMinigame();
     }
 
     private void OnRecipeChosen(object sender, Recipe recipe)
