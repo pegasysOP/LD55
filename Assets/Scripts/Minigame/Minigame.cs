@@ -12,6 +12,8 @@ public enum MinigameScore
 
 public abstract class Minigame : MonoBehaviour
 {
+    public Timer timer;
+
     /// <summary>
     /// Thrown when the minigame is over, gives the score achieved
     /// </summary>
