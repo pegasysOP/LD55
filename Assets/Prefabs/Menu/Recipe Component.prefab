@@ -248,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeIcon: {fileID: 6342858078887981450}
   button: {fileID: 1352834795224141698}
-  ratingIcon: {fileID: 6697313286184164736}
+  medalIcon: {fileID: 6697313286184164736}
   bronzeImage: {fileID: 21300000, guid: 4020905ca602557439162457c3b1bf5f, type: 3}
   silverImage: {fileID: 21300000, guid: 6096304b977fc0a40abfea5de75e8244, type: 3}
   goldImage: {fileID: 21300000, guid: b7dd44639fe419b41b5e2edadc160e5a, type: 3}
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 4361058888561524275}
   - component: {fileID: 6697313286184164736}
   m_Layer: 5
-  m_Name: Rating Icon
+  m_Name: Medal Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

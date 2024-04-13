@@ -9,7 +9,7 @@ public class RecipeComponent : MonoBehaviour, IPointerEnterHandler, IPointerExit
 {
     [SerializeField] private Image recipeIcon;
     [SerializeField] private Button button;
-    [SerializeField] private Image ratingIcon;
+    [SerializeField] private Image medalIcon;
 
     [Header("Ratings")]
     [SerializeField] private Sprite bronzeImage;
@@ -27,24 +27,33 @@ public class RecipeComponent : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public event EventHandler<Recipe> OnHover;
 
     private Recipe recipe;
+    private bool unlocked;
+
     private Coroutine hoverCoroutine;
     private Sequence jiggleSequence;
 
-    public void Init(Recipe recipe)
+    public void Init(Recipe recipe, bool unlocked)
     {
         this.recipe = recipe;
+        this.unlocked = unlocked;
 
         recipeIcon.sprite = recipe.Icon;
 
-        if (recipe.GetScore() != MedalType.None )
-            ratingIcon.sprite = GetRatingSprite(recipe.GetScore());
-        else
-            ratingIcon.gameObject.SetActive(false);
-
         button.onClick.AddListener(OnButtonClick);
+        button.interactable = unlocked;
+
+        SetMedalIcon();
     }
 
-    private Sprite GetRatingSprite(MedalType score)
+    private void SetMedalIcon()
+    {
+        if (recipe.GetScore() != MedalType.None)
+            medalIcon.sprite = GetMedalSprite(recipe.GetScore());
+        else
+            medalIcon.gameObject.SetActive(false);
+    }
+
+    private Sprite GetMedalSprite(MedalType score)
     {
         switch (score)
         {
@@ -63,10 +72,13 @@ public class RecipeComponent : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     private void OnButtonClick()
     {
-        if (recipe != null)
-            OnClick.Invoke(this, recipe);
-        else
-            Debug.LogError("There is no recipe on this component");
+        if (unlocked)
+        {
+            if (recipe != null)
+                OnClick.Invoke(this, recipe);
+            else
+                Debug.LogError("There is no recipe on this component");
+        }
     }
 
     private void OnDestroy()
@@ -81,8 +93,6 @@ public class RecipeComponent : MonoBehaviour, IPointerEnterHandler, IPointerExit
         jiggleSequence.Join(recipeIcon.transform.DOPunchPosition(new Vector3(0f, 8f, 0f), 1.2f, 9));
         jiggleSequence.Join(recipeIcon.transform.DOPunchScale(new Vector3(-0.15f, 0.3f, 0f), 1.2f, 9));
         yield return jiggleSequence.WaitForCompletion();
-
-
 
         // then wiggle
         while (true)
@@ -99,17 +109,20 @@ public class RecipeComponent : MonoBehaviour, IPointerEnterHandler, IPointerExit
         else
             Debug.LogError("There is no recipe on this component");
 
-        if (hoverCoroutine != null)
+        if (unlocked)
         {
-            StopCoroutine(hoverCoroutine);
+            if (hoverCoroutine != null)
+            {
+                StopCoroutine(hoverCoroutine);
 
-            jiggleSequence.Kill();
-            recipeIcon.transform.localPosition= Vector3.zero;
-            recipeIcon.transform.localScale = Vector3.one;
-            recipeIcon.transform.localRotation = Quaternion.identity;
+                jiggleSequence.Kill();
+                recipeIcon.transform.localPosition = Vector3.zero;
+                recipeIcon.transform.localScale = Vector3.one;
+                recipeIcon.transform.localRotation = Quaternion.identity;
+            }
+
+            hoverCoroutine = StartCoroutine(HandleMouseHover());
         }
-        
-        hoverCoroutine = StartCoroutine(HandleMouseHover());
     }
 
     public void OnPointerExit(PointerEventData eventData)

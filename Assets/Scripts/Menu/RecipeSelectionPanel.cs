@@ -21,14 +21,18 @@ public class RecipeSelectionPanel : MonoBehaviour
     {
         ClearRecipeComponents();
 
-        foreach (Recipe recipe in recipes)
-            CreateRecipeComponent(recipe);
+        for (int i = 0; i < recipes.Count; i++)
+        {
+            bool unlocked = i == 0 || recipes[i - 1].GetScore() != MedalType.None;
+
+            CreateRecipeComponent(recipes[i], unlocked);
+        }
     }
 
-    private void CreateRecipeComponent(Recipe recipe)
+    private void CreateRecipeComponent(Recipe recipe, bool unlocked)
     {
         RecipeComponent component = Instantiate(recipeComponentPrefab, recipeContainer);
-        component.Init(recipe);
+        component.Init(recipe, unlocked);
         component.OnHover += OnRecipeHover;
         component.OnClick += OnRecipeClicked;
 
