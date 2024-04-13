@@ -24,6 +24,7 @@ public class RecipeComponent : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     private Recipe recipe;
     private Coroutine hoverCoroutine;
+    private Sequence jiggleSequence;
 
     public void Init(Recipe recipe)
     {
@@ -72,23 +73,32 @@ public class RecipeComponent : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private IEnumerator HandleMouseHover()
     {
         // first jiggle
-        Sequence sequence = DOTween.Sequence();
-        sequence.Join(recipeIcon.transform.DOPunchPosition(new Vector3(0f, 8f, 0f), 1.2f, 9));
-        sequence.Join(recipeIcon.transform.DOPunchScale(new Vector3(-0.15f, 0.3f, 0f), 1.2f, 9));
-        yield return sequence.WaitForCompletion();
+        jiggleSequence = DOTween.Sequence();
+        jiggleSequence.Join(recipeIcon.transform.DOPunchPosition(new Vector3(0f, 8f, 0f), 1.2f, 9));
+        jiggleSequence.Join(recipeIcon.transform.DOPunchScale(new Vector3(-0.15f, 0.3f, 0f), 1.2f, 9));
+        yield return jiggleSequence.WaitForCompletion();
+
+
 
         // then wiggle
         while (true)
         {
-            recipeIcon.transform.DOShakeRotation(1f, new Vector3(0f, 0f, 15f), 1, 90f, false, ShakeRandomnessMode.Harmonic);
-            yield return new WaitForSeconds(1f);
+            recipeIcon.transform.DOShakeRotation(1.2f, new Vector3(0f, 0f, 15f), 1, 90f, false, ShakeRandomnessMode.Harmonic);
+            yield return new WaitForSeconds(1.2f);
         }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (hoverCoroutine != null)
+        {
             StopCoroutine(hoverCoroutine);
+
+            jiggleSequence.Kill();
+            recipeIcon.transform.localPosition= Vector3.zero;
+            recipeIcon.transform.localScale = Vector3.one;
+            recipeIcon.transform.localRotation = Quaternion.identity;
+        }
         
         hoverCoroutine = StartCoroutine(HandleMouseHover());
     }
