@@ -2,30 +2,19 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum MinigameScore
-{
-    None,
-    Bronze,
-    Silver,
-    Gold,
-    Platinum
-}
-
-
-
-public abstract class Minigame : MonoBehaviour
+public abstract class MinigameStep : MonoBehaviour
 {
     public Timer timer;
-    public List<MinigameStep> steps;
+    public MinigameScore score;
 
     /// <summary>
     /// Thrown when the minigame is over, gives the score achieved
     /// </summary>
-    public abstract event EventHandler<MinigameScore> OnMinigameOver;
+    public abstract event EventHandler<MinigameScore> OnMinigameStepOver;
 
     /// <summary>
     /// Starts the minigame
     /// </summary>
     /// <returns>Returns true if started successfully</returns>
-    public abstract bool StartMinigame();
+    public abstract bool StartMinigameStep();
 }
