@@ -8,7 +8,7 @@ public enum MinigameScore
     Bronze,
     Silver,
     Gold,
-    Platinum
+    Jade
 }
 
 

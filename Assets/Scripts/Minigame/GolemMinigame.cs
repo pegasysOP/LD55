@@ -31,10 +31,10 @@ public class GolemMinigame : Minigame
         minigameStepInstance = Instantiate(step);
 
         //Add event listener for this step
-        step.OnMinigameStepOver += OnMinigameStepOver;
+        minigameStepInstance.OnMinigameStepOver += OnMinigameStepOver;
 
         //Start each minigame step
-        step.StartMinigameStep();
+        minigameStepInstance.StartMinigameStep();
 
 
         //Wait for score from minigame step
@@ -62,16 +62,20 @@ public class GolemMinigame : Minigame
 
     private void OnMinigameStepOver(object sender, MinigameScore score)
     {
-        if(steps.Count == 0)
-        {
-            Destroy(minigameStepInstance);
-            Debug.Log("Minigame over");
-            //There are no more steps so end the minigame 
-            OnMinigameOver.Invoke(this, score);
-        }
+        minigameStepInstance.OnMinigameStepOver -= OnMinigameStepOver;
+        Destroy(minigameStepInstance);
 
         //If there are more steps then get the next step and start it 
-        StartMinigameStep();
+        if(steps.Count > 0)
+        {
+            StartMinigameStep();
+        }
+        else
+        {
+            //There are no more steps so end the minigame 
+            Debug.Log("Minigame over");
+            OnMinigameOver.Invoke(this, score);
+        }
     }
 
 

@@ -22,7 +22,10 @@ public class CrushGeodeMinigameStep : MinigameStep
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Crush Geode Minigame step complete");
-        OnMinigameStepOver.Invoke(this, MinigameScore.None);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Crush Geode Minigame step complete");
+            OnMinigameStepOver.Invoke(this, MinigameScore.Bronze);
+        }
     }
 }

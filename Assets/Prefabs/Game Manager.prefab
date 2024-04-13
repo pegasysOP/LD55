@@ -51,10 +51,10 @@ MonoBehaviour:
     score: 0
   - minigame: {fileID: 0}
     icon: {fileID: 21300000, guid: 80a31ef9ecefc90468d97c47b89b6d1f, type: 3}
-    score: 0
+    score: 2
   - minigame: {fileID: 0}
     icon: {fileID: 21300000, guid: eb038679deb2d574b8682cec7a3861df, type: 3}
-    score: 0
+    score: 4
   - minigame: {fileID: 0}
     icon: {fileID: 21300000, guid: 17a48801aaa6aad49ab1a1bd3b3893e3, type: 3}
-    score: 0
+    score: 3

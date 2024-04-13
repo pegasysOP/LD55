@@ -4,8 +4,15 @@ using UnityEngine.UI;
 
 public class RecipeComponent : MonoBehaviour
 {
-    [SerializeField] private Image icon;
+    [SerializeField] private Image recipeIcon;
     [SerializeField] private Button button;
+    [SerializeField] private Image ratingIcon;
+
+    [Header("Ratings")]
+    [SerializeField] private Sprite bronzeImage;
+    [SerializeField] private Sprite silverImage;
+    [SerializeField] private Sprite goldImage;
+    [SerializeField] private Sprite jadeImage;
 
     /// <summary>
     /// Called when a recipe component is clicked
@@ -18,11 +25,31 @@ public class RecipeComponent : MonoBehaviour
     {
         this.recipe = recipe;
 
-        icon.sprite = recipe.Icon;
+        recipeIcon.sprite = recipe.Icon;
 
-        // also set up rating as a separate thing
+        if (recipe.GetScore() != MinigameScore.None )
+            ratingIcon.sprite = GetRatingSprite(recipe.GetScore());
+        else
+            ratingIcon.gameObject.SetActive(false);
 
         button.onClick.AddListener(OnButtonClick);
+    }
+
+    private Sprite GetRatingSprite(MinigameScore score)
+    {
+        switch (score)
+        {
+            case MinigameScore.Jade:
+                return jadeImage;
+            case MinigameScore.Gold: 
+                return goldImage;
+            case MinigameScore.Silver:
+                return silverImage;
+            case MinigameScore.Bronze:
+                return bronzeImage;
+            default:
+                return null;
+        }
     }
 
     private void OnButtonClick()
