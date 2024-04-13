@@ -1,8 +1,11 @@
+using DG.Tweening;
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class RecipeComponent : MonoBehaviour
+public class RecipeComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Image recipeIcon;
     [SerializeField] private Button button;
@@ -20,6 +23,7 @@ public class RecipeComponent : MonoBehaviour
     public event EventHandler<Recipe> OnClick;
 
     private Recipe recipe;
+    private Coroutine hoverCoroutine;
 
     public void Init(Recipe recipe)
     {
@@ -63,5 +67,35 @@ public class RecipeComponent : MonoBehaviour
     private void OnDestroy()
     {
         button.onClick.RemoveListener(OnButtonClick);
+    }
+
+    private IEnumerator HandleMouseHover()
+    {
+        // first jiggle
+        Sequence sequence = DOTween.Sequence();
+        sequence.Join(recipeIcon.transform.DOPunchPosition(new Vector3(0f, 8f, 0f), 1.2f, 9));
+        sequence.Join(recipeIcon.transform.DOPunchScale(new Vector3(-0.15f, 0.3f, 0f), 1.2f, 9));
+        yield return sequence.WaitForCompletion();
+
+        // then wiggle
+        while (true)
+        {
+            recipeIcon.transform.DOShakeRotation(1f, new Vector3(0f, 0f, 15f), 1, 90f, false, ShakeRandomnessMode.Harmonic);
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (hoverCoroutine != null)
+            StopCoroutine(hoverCoroutine);
+        
+        hoverCoroutine = StartCoroutine(HandleMouseHover());
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (hoverCoroutine != null)
+            StopCoroutine(hoverCoroutine);
     }
 }
