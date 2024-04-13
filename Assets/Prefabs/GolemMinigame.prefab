@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7000336672407448161}
   - component: {fileID: -1619836453747280129}
   m_Layer: 0
-  m_Name: GolemGameObject
+  m_Name: GolemMinigame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbbd54850f471c642a40f8e297f01549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: {fileID: 0}
-  steps: []
+  steps:
+  - {fileID: -2537545388618013434, guid: 59edf7e909a0be94ebc5d60d18cf4878, type: 3}
