@@ -3,7 +3,6 @@ using UnityEngine;
 
 public abstract class MinigameStep : MonoBehaviour
 {
-    public Timer timer;
     public MedalType score;
 
     /// <summary>
