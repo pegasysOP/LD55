@@ -41,7 +41,7 @@ public abstract class Minigame : MonoBehaviour
         MinigameStep step = steps[0];
         steps.RemoveAt(0);
 
-        minigameStepInstance = Instantiate(step);
+        minigameStepInstance = Instantiate(step, transform);
         minigameStepInstance.OnMinigameStepOver += OnMinigameStepOver;
         minigameStepInstance.StartMinigameStep();
 
