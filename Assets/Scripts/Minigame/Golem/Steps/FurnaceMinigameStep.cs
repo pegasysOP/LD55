@@ -15,7 +15,6 @@ public class FurnaceMinigameStep : MinigameStep
 
     public override bool StartMinigameStep()
     {
-        Debug.Log("Furnace Stoke Minigame step started");
         return true;
     }
 
@@ -24,7 +23,6 @@ public class FurnaceMinigameStep : MinigameStep
     {
         timer = timerDuration;
         furnaceHeatSlider.value = 7;
-      
     }
 
     // Update is called once per frame
@@ -74,8 +72,6 @@ public class FurnaceMinigameStep : MinigameStep
             {
                 OnMinigameStepOver.Invoke(this, MinigameScore.None);
             }
-
-
         }
         HandleInput();
         
@@ -85,12 +81,10 @@ public class FurnaceMinigameStep : MinigameStep
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Furnace Stoke Minigame step complete");
             OnMinigameStepOver.Invoke(this, MinigameScore.Silver);
         }
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Left mouse button pressed");
             if (furnaceHeatSlider.value + 1 < furnaceHeatSlider.maxValue)
             {
                 furnaceHeatSlider.value += 1;
@@ -99,7 +93,6 @@ public class FurnaceMinigameStep : MinigameStep
             {
                 furnaceHeatSlider.value = furnaceHeatSlider.maxValue;
             }
-
         }
     }
 }
