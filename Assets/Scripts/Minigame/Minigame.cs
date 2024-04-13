@@ -10,7 +10,7 @@ public enum MinigameScore
     Platinum
 }
 
-public abstract class MinigameBase : MonoBehaviour
+public abstract class Minigame : MonoBehaviour
 {
     /// <summary>
     /// Thrown when the minigame is over, gives the score achieved
