@@ -3,6 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public class Recipe
 {
+    [SerializeField] private string name;
     [SerializeField] private Minigame minigame;
     [SerializeField] private Sprite icon;
     [SerializeField] private MinigameScore score;
