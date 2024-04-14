@@ -1,53 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] float duration;
+    [SerializeField] Slider slider;
+
+    private Action onComplete;
     private float time;
-
-    private bool isPaused = false;
+    private bool running;
  
+    public void StartTimer(float duration, Action onComplete = null)
+    {
+        this.onComplete = onComplete;
 
-    // Update is called once per frame
+        time = duration;
+        slider.maxValue = duration;
+
+        running = true;
+    }
+
     void Update()
     {
-        if (!isPaused)
+        if (!running)
+            return;
+
+        time -= Time.deltaTime;
+        slider.value = time;
+
+        if (time <= 0)
         {
-            time -= Time.deltaTime;
+            running = false;
+            time = 0;
+            
+            if (onComplete != null)
+                onComplete();
         }
     }
-
-    public void SetTime(float duration)
-    {
-        this.duration = duration; 
-    }
-
-    public float GetTime()
-    {
-        return duration;
-    }
-
-    public void Reset()
-    {
-        time = duration;
-    }
-
-    public void Play()
-    {
-        isPaused = false;
-    }
-
-    public void Pause()
-    {
-        isPaused = true;
-    }
-
-    public void Unpause()
-    {
-        isPaused = false;
-    }
-
 }
