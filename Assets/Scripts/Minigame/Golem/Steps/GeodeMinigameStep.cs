@@ -1,6 +1,8 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -11,15 +13,29 @@ public class GeodeMinigameStep : MinigameStep
     [SerializeField] private Transform geodePivot;
     [SerializeField] private Transform dottedLinePivot;
     [SerializeField] private Transform chiselPivot;
+    [SerializeField] private Transform chiselTransform;
     [SerializeField] private TextMeshProUGUI debugText;
 
     [Header("Game Paramaters")]
     [SerializeField] private int numberOfRounds;
     [SerializeField] private float angleTolerance;
     [SerializeField] private float geodeRotationSpeed;
-    private Coroutine geodeRotationCoroutine;
+
+    [Header("Chisel Animation")]
+    [SerializeField] private Sprite geodeNormalSprite;
+    [SerializeField] private Sprite geodeOpenSprite;
+    [SerializeField] private float chiselAnimDistance;
+    [SerializeField] private float chiselAnimeTime;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip bonkClip;
+    [SerializeField] private AudioClip breakClip;
 
     public override event EventHandler<MedalType> OnMinigameStepOver;
+
+    private Coroutine geodeRotationCoroutine;
+    private Sequence chiselSequence;
 
     private bool trackingMouse;
     private bool chiselInRange;
@@ -91,20 +107,75 @@ public class GeodeMinigameStep : MinigameStep
     {
         roundCounter++;
 
+        geodeSprite.sprite = geodeNormalSprite;
+
         SetLineRotation();
-        StartGeodeRotation(geodeRotationSpeed);
+        StartGeodeRotation();
         trackingMouse = true;
     }
 
     private void HandleGeodeComplete()
     {
-        StopGeodeRotation();
-        trackingMouse = false;
-
         if (roundCounter >= numberOfRounds)
             HandleMinigameComplete();
         else
             StartNewGeode();
+    }
+
+    private void DoChiselAnimation()
+    {
+        StopGeodeRotation();
+        trackingMouse = false;
+
+        Vector3 originalPosition = chiselTransform.localPosition;
+        Vector3 targetPosition = originalPosition + (Vector3.up * chiselAnimDistance);
+
+        float progress = 0f;
+        bool midpointReached = false;
+
+        chiselSequence = DOTween.Sequence();
+        chiselSequence.Append(chiselTransform.DOLocalMove(targetPosition, chiselAnimeTime))
+            .SetEase(Ease.Linear)
+            .OnUpdate(() =>
+            {
+                progress += Time.deltaTime / chiselAnimeTime;
+                if (progress >= 0.5f && !midpointReached)
+                {
+                    midpointReached = true;
+                    OnChiselAnimMidpoint();
+                }
+            })
+            .Append(chiselTransform.DOLocalMove(originalPosition, chiselAnimeTime))
+            .SetEase(Ease.Linear)
+            .OnComplete(OnChiselAnimComplete);
+
+        chiselSequence.Restart();
+    }
+
+    private void OnChiselAnimMidpoint()
+    {
+        if (!chiselInRange)
+        {
+            geodeSprite.transform.DOShakeRotation(chiselAnimeTime / 4f, new Vector3(0f, 0f, 10f), 10, 45f);
+            audioSource.PlayOneShot(bonkClip);
+            return;
+        }
+
+        geodeSprite.sprite = geodeOpenSprite;
+        audioSource.PlayOneShot(breakClip);
+    }
+
+    private void OnChiselAnimComplete()
+    {
+        if (!chiselInRange)
+        {
+            missCounter++;
+            StartGeodeRotation();
+            trackingMouse = true;
+            return;
+        }
+
+        HandleGeodeComplete();
     }
 
     private void SetLineRotation()
@@ -113,18 +184,18 @@ public class GeodeMinigameStep : MinigameStep
         dottedLinePivot.Rotate(Vector3.forward, angle, Space.Self);
     }
 
-    private IEnumerator HandleGeodeRotation(float rotationSpeed)
+    private IEnumerator HandleGeodeRotation()
     {
         while (true)
         {
-            geodePivot.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime, Space.Self);
+            geodePivot.Rotate(Vector3.forward, geodeRotationSpeed * Time.deltaTime, Space.Self);
             yield return new WaitForEndOfFrame();
         }
     }
 
-    private void StartGeodeRotation(float rotationSpeed)
+    private void StartGeodeRotation()
     {
-        geodeRotationCoroutine = StartCoroutine(HandleGeodeRotation(rotationSpeed));
+        geodeRotationCoroutine = StartCoroutine(HandleGeodeRotation());
     }
 
     private void StopGeodeRotation()
@@ -147,13 +218,7 @@ public class GeodeMinigameStep : MinigameStep
         if (!Input.GetMouseButtonDown(0))
             return;
 
-        if (!chiselInRange)
-        {
-            missCounter++;
-            return;
-        }
-
-        HandleGeodeComplete();
+        DoChiselAnimation();
     }
 
     private bool CalculateChiselLineDistance()
