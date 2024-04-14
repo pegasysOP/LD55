@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2442260062613465962}
   - component: {fileID: 2107895151397432824}
   m_Layer: 5
-  m_Name: Furnace Slider
+  m_Name: Heat Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -78,7 +78,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 4978915560812312701}
   m_FillRect: {fileID: 0}
   m_HandleRect: {fileID: 1307358792076150081}
@@ -386,30 +386,42 @@ MonoBehaviour:
   score: 0
   heatRegionPrefab: {fileID: 695237772565436151, guid: 59b38e94bd6b2444785fef036dac32ac, type: 3}
   heatRegionContainer: {fileID: 621284693921932261}
-  furnaceHeatSlider: {fileID: 2107895151397432824}
+  heatSlider: {fileID: 2107895151397432824}
   timer: {fileID: 1493190873513971498}
   timerDuration: 10
+  coolingRate: 35
+  heatingRate: 45
   heatRegions:
   - Colour: {r: 0.9058824, g: 0.5372549, b: 0.3254902, a: 1}
-    Weight: 5
+    Width: 5
+    Score: 0
   - Colour: {r: 0.9725491, g: 0.7372549, b: 0.32941177, a: 1}
-    Weight: 9
+    Width: 9
+    Score: 1
   - Colour: {r: 0.9960785, g: 0.9921569, b: 0.45098042, a: 1}
-    Weight: 14
+    Width: 14
+    Score: 2
   - Colour: {r: 0.54509807, g: 0.9960785, b: 0.46274513, a: 1}
-    Weight: 20
+    Width: 20
+    Score: 3
   - Colour: {r: 0.2784314, g: 0.7372549, b: 0.24313727, a: 1}
-    Weight: 6
+    Width: 6
+    Score: 4
   - Colour: {r: 0.9803922, g: 0.98823535, b: 0.47058827, a: 1}
-    Weight: 2
+    Width: 2
+    Score: 2
   - Colour: {r: 0.9921569, g: 0.74509805, b: 0.34117648, a: 1}
-    Weight: 1
+    Width: 1
+    Score: 1
   - Colour: {r: 0.95294124, g: 0.5529412, b: 0.33333334, a: 1}
-    Weight: 1
+    Width: 1
+    Score: 1
   - Colour: {r: 0.92549026, g: 0.34117648, b: 0.32156864, a: 1}
-    Weight: 1
+    Width: 1
+    Score: 0
   - Colour: {r: 0.77647066, g: 0.21568629, b: 0.19215688, a: 1}
-    Weight: 1
+    Width: 2
+    Score: 0
 --- !u!1 &9163858400042610853
 GameObject:
   m_ObjectHideFlags: 0

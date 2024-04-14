@@ -1,19 +1,19 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Xml.Schema;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class FurnaceMinigameStep : MinigameStep
 {
-    [SerializeField] FurnaceHeatRegion heatRegionPrefab;
-    [SerializeField] Transform heatRegionContainer;
-    [SerializeField] Slider furnaceHeatSlider;
-    [SerializeField] Timer timer;
+    [SerializeField] private FurnaceHeatRegion heatRegionPrefab;
+    [SerializeField] private Transform heatRegionContainer;
+    [SerializeField] private Slider heatSlider;
+    [SerializeField] private Timer timer;
 
     [Header("Game Paramaters")]
     [SerializeField] private float timerDuration;
+    [SerializeField] private float coolingRate;
+    [SerializeField] private float heatingRate;
     [SerializeField] private List<Segment> heatRegions;
 
     public override event EventHandler<MedalType> OnMinigameStepOver;
@@ -23,104 +23,92 @@ public class FurnaceMinigameStep : MinigameStep
         return true;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         CreateHeatRegions();
 
-        timer.StartTimer(timerDuration, CalculateScore);
-        furnaceHeatSlider.value = 7;
+        timer.StartTimer(timerDuration, OnTimerEnded);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        furnaceHeatSlider.value -= Time.deltaTime;
-
-        HandleInput();
-
-        if (furnaceHeatSlider.value == 0 || furnaceHeatSlider.value > furnaceHeatSlider.maxValue - 0.1)
-        {
-            //Minigame should fail if the heat completely dissapears or reaches the maximum
-            OnMinigameStepOver.Invoke(this, MedalType.None);
-        }
+        HandleCooling();
+        HandleHeating();
     }
 
     private void CreateHeatRegions()
     {
         int totalWeight = 0;
         foreach (Segment segment in heatRegions)
-            totalWeight += segment.Weight;
+            totalWeight += segment.Width;
 
         float weightToWidth = heatRegionContainer.GetComponent<RectTransform>().rect.width / (float)totalWeight;
 
         foreach (Segment segment in heatRegions)
         {
             FurnaceHeatRegion heatRegion = Instantiate(heatRegionPrefab, heatRegionContainer);
-            heatRegion.Init(segment.Colour, segment.Weight * weightToWidth);
+            heatRegion.Init(segment.Colour, segment.Width * weightToWidth);
         }
+
+        heatSlider.maxValue = totalWeight;
+        heatSlider.value = totalWeight / 2f;
     }
 
-    void CalculateScore()
+    private void OnTimerEnded()
     {
-        if (furnaceHeatSlider.value < 10 && furnaceHeatSlider.value > 9)
+        OnMinigameStepOver.Invoke(this, CalculateScore());
+    }
+
+    private MedalType CalculateScore()
+    {
+        float total = 0f;
+
+        foreach (Segment segment in heatRegions)
         {
-            OnMinigameStepOver.Invoke(this, MedalType.Bronze);
-        }
-        if (furnaceHeatSlider.value < 9 && furnaceHeatSlider.value > 8)
-        {
-            OnMinigameStepOver.Invoke(this, MedalType.Silver);
-        }
-        if (furnaceHeatSlider.value < 8 && furnaceHeatSlider.value > 7)
-        {
-            OnMinigameStepOver.Invoke(this, MedalType.Gold);
-        }
-        if (furnaceHeatSlider.value < 7 && furnaceHeatSlider.value > 6)
-        {
-            OnMinigameStepOver.Invoke(this, MedalType.Jade);
+            total += segment.Width;
+
+            if (heatSlider.value <= total)
+            {
+                Debug.Log($"Furnace step complete, Score: {segment.Score}");
+                return segment.Score;
+            }
         }
 
-        if (furnaceHeatSlider.value < 6 && furnaceHeatSlider.value > 5)
-        {
-            OnMinigameStepOver.Invoke(this, MedalType.Gold);
-        }
-        if (furnaceHeatSlider.value < 5 && furnaceHeatSlider.value > 4)
-        {
-            OnMinigameStepOver.Invoke(this, MedalType.Silver);
-        }
-        if (furnaceHeatSlider.value < 4 && furnaceHeatSlider.value > 3)
-        {
-            OnMinigameStepOver.Invoke(this, MedalType.Bronze);
-        }
-        if (furnaceHeatSlider.value < 3 && furnaceHeatSlider.value > 0)
-        {
+        return MedalType.None;
+    }
+
+    private void HandleCooling()
+    {
+        if (!Input.GetMouseButton(0))
+            heatSlider.value -= coolingRate * Time.deltaTime;
+
+        if (heatSlider.value <= 0)
             OnMinigameStepOver.Invoke(this, MedalType.None);
-        }
     }
 
-    void HandleInput()
+    private void HandleHeating()
     {
+        if (Input.GetMouseButton(0))
+            heatSlider.value += heatingRate * Time.deltaTime;
+
+        if (heatSlider.value >= heatSlider.maxValue)
+            OnMinigameStepOver.Invoke(this, MedalType.None);
+
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            OnMinigameStepOver.Invoke(this, MedalType.Silver);
+            Debug.Log("Crush Geode Minigame step complete");
+            OnMinigameStepOver.Invoke(this, MedalType.Bronze);
         }
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (furnaceHeatSlider.value + 1 < furnaceHeatSlider.maxValue)
-            {
-                furnaceHeatSlider.value += 1;
-            }
-            else
-            {
-                furnaceHeatSlider.value = furnaceHeatSlider.maxValue;
-            }
-        }
+#endif
     }
 
     [System.Serializable]
     public struct Segment
     {
         public Color Colour;
-        public int Weight;
+        public int Width;
+        public MedalType Score;
     }
 }
