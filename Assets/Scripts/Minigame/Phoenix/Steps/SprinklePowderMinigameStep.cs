@@ -15,8 +15,6 @@ public class SprinklePowderMinigameStep : MinigameStep
 
     [SerializeField] GameObject powderGO;
 
-    List<GameObject> powderGOs;
-
     public override bool StartMinigameStep()
     {
         Debug.Log("Sprinkle Powder Minigame step started");

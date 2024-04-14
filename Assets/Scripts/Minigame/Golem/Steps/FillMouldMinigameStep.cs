@@ -12,21 +12,26 @@ public class FillMouldMinigameStep : MinigameStep
     public Slider filledAmountSlider;
 
     private float timerDuration = 10f;
-    private float timer;
+
+    [SerializeField] private Timer timer;
 
     [SerializeField] GameObject TimerGO;
 
     public override bool StartMinigameStep()
     {
         Debug.Log("Fill Mould minigame started");
+        timer.StartTimer(timerDuration, OnTimerFinished);
         return true;
+    }
+
+    private void OnTimerFinished()
+    {
+        OnMinigameStepOver.Invoke(this, MedalType.Gold);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        timer = timerDuration;
-        TimerGO.GetComponent<Slider>().maxValue = timerDuration;
     }
 
     // Update is called once per frame
@@ -38,19 +43,11 @@ public class FillMouldMinigameStep : MinigameStep
         }
 
         filledAmountSlider.value += flowRateSlider.value * Time.deltaTime;
-        timer -= Time.deltaTime;
-        TimerGO.GetComponent<Slider>().value = Mathf.CeilToInt(timer);
 
         if (filledAmountSlider.value == filledAmountSlider.maxValue)
         {
             //Minigame should fail if the heat completely dissapears or reaches the maximum
             OnMinigameStepOver.Invoke(this, MedalType.None);
         }
-
-        if(timer <= 0)
-        {
-            OnMinigameStepOver.Invoke(this, MedalType.Gold);
-        }
     }
-
 }
