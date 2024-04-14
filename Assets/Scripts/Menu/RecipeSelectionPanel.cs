@@ -2,12 +2,19 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class RecipeSelectionPanel : MonoBehaviour
 {
     [SerializeField] private RecipeComponent recipeComponentPrefab;
     [SerializeField] private Transform recipeContainer;
     [SerializeField] private TextMeshProUGUI topText;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip blipClip;
+    [SerializeField] private float pitchRange;
+
 
     private List<RecipeComponent> recipeComponents;
 
@@ -42,6 +49,13 @@ public class RecipeSelectionPanel : MonoBehaviour
     private void OnRecipeHover(object sender, Recipe recipe)
     {
         topText.text = recipe.Name;
+
+        if (((RecipeComponent)sender).IsUnlocked())
+        {
+            audioSource.Stop();
+            audioSource.pitch = 1f + Random.Range(-pitchRange / 2f, pitchRange / 2f);
+            audioSource.PlayOneShot(blipClip);
+        }
     }
 
     private void OnRecipeClicked(object sender, Recipe recipe)

@@ -70,6 +70,11 @@ public class RecipeComponent : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
     }
 
+    public bool IsUnlocked()
+    {
+        return unlocked;
+    }
+
     private void OnButtonClick()
     {
         if (unlocked)
