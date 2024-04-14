@@ -9,6 +9,15 @@ public class ChopChilliMinigameStep : MinigameStep
     private float timerDuration = 10f;
     private float timer;
 
+    [SerializeField] Sprite[] chilliSprites;
+
+    private const int numChopsRequired = 3;
+    private int numChops = 0;
+
+    private bool isDragging = false;
+
+    [SerializeField] Image chilliImage;
+
     [SerializeField] GameObject TimerGO;
 
     public override bool StartMinigameStep()
@@ -22,6 +31,8 @@ public class ChopChilliMinigameStep : MinigameStep
     {
         timer = timerDuration;
         TimerGO.GetComponent<Slider>().maxValue = timerDuration;
+
+        chilliImage.sprite = chilliSprites[numChops];
     }
 
     // Update is called once per frame
@@ -35,5 +46,58 @@ public class ChopChilliMinigameStep : MinigameStep
 
         timer -= Time.deltaTime;
         TimerGO.GetComponent<Slider>().value = Mathf.CeilToInt(timer);
+
+        if (timer <= 0)
+        {
+            OnMinigameStepOver.Invoke(this, MedalType.None);
+        }
+
+        HandleInput();
+        
+    }
+
+    private void HandleInput()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            isDragging = true;
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            isDragging = false;
+        }
+
+        if (isDragging)
+        {
+            Vector2 mousePos = Input.mousePosition;
+
+            if (ChopChili(mousePos))
+            {
+                numChops++;
+
+                chilliImage.sprite = chilliSprites[numChops];
+
+                isDragging = false;
+
+                if (numChops >= numChopsRequired)
+                {
+                    Debug.Log("Chili chopping minigame completed!");
+                    OnMinigameStepOver.Invoke(this, MedalType.Gold);
+                }
+            }
+        }
+
+    }
+
+    private bool ChopChili(Vector2 mousePos)
+    {
+        Vector2 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+
+        Rect chiliRect = new Rect(transform.position.x - chilliImage.rectTransform.rect.width / 2,
+                                  transform.position.y - chilliImage.rectTransform.rect.height / 2,
+                                  chilliImage.rectTransform.rect.width,
+                                  chilliImage.rectTransform.rect.height);
+
+        return chiliRect.Contains(worldPos);
     }
 }

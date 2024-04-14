@@ -46,6 +46,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  chilliSprites:
+  - {fileID: 21300000, guid: ba9406d3c9670104da5604d05762ae9c, type: 3}
+  - {fileID: 21300000, guid: 0efc311a2383a2b4cb91a1bb283452ab, type: 3}
+  - {fileID: 21300000, guid: 647d8fa632701b74fb8a67ad4881952d, type: 3}
+  - {fileID: 21300000, guid: 35a8cf474d618724d806243e0f102a4c, type: 3}
+  chilliImage: {fileID: 1073464051880763390}
   TimerGO: {fileID: 8559578443003394892}
 --- !u!1 &5553322082531265768
 GameObject:
