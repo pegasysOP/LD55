@@ -15,6 +15,8 @@ public class SprinklePowderMinigameStep : MinigameStep
 
     [SerializeField] GameObject powderGO;
 
+    List<GameObject> powderGOs;
+
     public override bool StartMinigameStep()
     {
         Debug.Log("Sprinkle Powder Minigame step started");
@@ -36,12 +38,14 @@ public class SprinklePowderMinigameStep : MinigameStep
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            DestroyPowder();
             Debug.Log("Sprinkle Powder Minigame step complete");
             OnMinigameStepOver.Invoke(this, MedalType.Bronze);
         }
 
         if (timer <= 0)
         {
+            DestroyPowder();
             OnMinigameStepOver.Invoke(this, MedalType.None);
         }
 
@@ -57,6 +61,16 @@ public class SprinklePowderMinigameStep : MinigameStep
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0;
             Instantiate(powderGO, mousePos, Quaternion.identity);
+        }
+    }
+
+    void DestroyPowder()
+    {
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Powder");
+
+        foreach (GameObject gameObject in gameObjects)
+        {
+            Destroy(gameObject);
         }
     }
 }

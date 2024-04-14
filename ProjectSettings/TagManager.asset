@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Timer
   - Chilli
+  - Powder
+  - Undefined
   layers:
   - Default
   - TransparentFX
