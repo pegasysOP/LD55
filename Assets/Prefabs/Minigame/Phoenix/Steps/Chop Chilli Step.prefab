@@ -200,6 +200,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 35a8cf474d618724d806243e0f102a4c, type: 3}
   chilliGO: {fileID: 4997372229746204343}
   TimerGO: {fileID: 1769158272638741006}
+  timer: {fileID: 2538350462594052013}
 --- !u!1 &8718012577982172308
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,3 +427,14 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1603552049845547782, guid: 230194e6d592fb849b8cbfd364011d4d, type: 3}
   m_PrefabInstance: {fileID: 1066691226053892360}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2538350462594052013 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3312307678363661989, guid: 230194e6d592fb849b8cbfd364011d4d, type: 3}
+  m_PrefabInstance: {fileID: 1066691226053892360}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769158272638741006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf995a84e3541e94a929794102a12938, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

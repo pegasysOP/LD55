@@ -8,7 +8,6 @@ public class ChopChilliMinigameStep : MinigameStep
     public override event EventHandler<MedalType> OnMinigameStepOver;
 
     private float timerDuration = 10f;
-    private float timer;
 
     [SerializeField] Sprite[] chilliSprites;
 
@@ -21,18 +20,23 @@ public class ChopChilliMinigameStep : MinigameStep
 
     [SerializeField] GameObject TimerGO;
 
+    [SerializeField] Timer timer;
+
     public override bool StartMinigameStep()
     {
         Debug.Log("Chop Chilli Minigame step started");
+        timer.StartTimer(timerDuration, OnTimerFinished);
         return true;
+    }
+
+    private void OnTimerFinished()
+    {
+        OnMinigameStepOver.Invoke(this, MedalType.None);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        timer = timerDuration;
-        TimerGO.GetComponent<Slider>().maxValue = timerDuration;
-
         chilliGO.GetComponent<SpriteRenderer>().sprite = chilliSprites[numChops];
     }
 
@@ -43,14 +47,6 @@ public class ChopChilliMinigameStep : MinigameStep
         {
             Debug.Log("Chop chilli Minigame step complete");
             OnMinigameStepOver.Invoke(this, MedalType.Bronze);
-        }
-
-        timer -= Time.deltaTime;
-        TimerGO.GetComponent<Slider>().value = Mathf.CeilToInt(timer);
-
-        if (timer <= 0)
-        {
-            OnMinigameStepOver.Invoke(this, MedalType.None);
         }
 
         HandleInput();
