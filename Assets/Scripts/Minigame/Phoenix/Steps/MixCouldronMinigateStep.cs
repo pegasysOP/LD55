@@ -9,7 +9,7 @@ public class MixCouldronMinigateStep : MinigameStep
     public override event EventHandler<MedalType> OnMinigameStepOver;
 
     [SerializeField] Timer timer;
-    private float timerDuration = 100f;
+    private float timerDuration = 10f;
 
     public float stirringRadius = 50f; // Adjust the radius of the circular stirring motion
     private Vector3 stirringCenter; // The center of the circular stirring motion
@@ -39,7 +39,27 @@ public class MixCouldronMinigateStep : MinigameStep
     private void OnTimerFinished()
     {
         Debug.Log("Mix Couldron Minigame step ended");
-        OnMinigameStepOver.Invoke(this, MedalType.None);
+
+        if(StirCompletionSlider.value == StirCompletionSlider.maxValue)
+        {
+            OnMinigameStepOver.Invoke(this, MedalType.Jade);
+        }
+        else if (StirCompletionSlider.value > 9f)
+        {
+            OnMinigameStepOver.Invoke(this, MedalType.Gold);
+        }
+        else if (StirCompletionSlider.value > 8f)
+        {
+            OnMinigameStepOver.Invoke(this, MedalType.Silver);
+        }
+        else if (StirCompletionSlider.value > 7f)
+        {
+            OnMinigameStepOver.Invoke(this, MedalType.Bronze);
+        }
+        else
+        {
+            OnMinigameStepOver.Invoke(this, MedalType.None);
+        }
     }
 
     // Start is called before the first frame update
@@ -98,7 +118,7 @@ public class MixCouldronMinigateStep : MinigameStep
 
             if(currentSpeed > 180 && currentSpeed < 360)
             {
-                StirCompletionSlider.value += 1 * Time.deltaTime;
+                StirCompletionSlider.value += 5 * Time.deltaTime;
             }
 
             // Update the last angle for the next frame
