@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Timer
+  - Chilli
   layers:
   - Default
   - TransparentFX

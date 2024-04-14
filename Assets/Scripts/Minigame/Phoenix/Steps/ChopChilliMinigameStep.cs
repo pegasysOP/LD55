@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ChopChilliMinigameStep : MinigameStep
@@ -16,7 +17,7 @@ public class ChopChilliMinigameStep : MinigameStep
 
     private bool isDragging = false;
 
-    [SerializeField] Image chilliImage;
+    [SerializeField] GameObject chilliGO;
 
     [SerializeField] GameObject TimerGO;
 
@@ -32,7 +33,7 @@ public class ChopChilliMinigameStep : MinigameStep
         timer = timerDuration;
         TimerGO.GetComponent<Slider>().maxValue = timerDuration;
 
-        chilliImage.sprite = chilliSprites[numChops];
+        chilliGO.GetComponent<SpriteRenderer>().sprite = chilliSprites[numChops];
     }
 
     // Update is called once per frame
@@ -75,7 +76,7 @@ public class ChopChilliMinigameStep : MinigameStep
             {
                 numChops++;
 
-                chilliImage.sprite = chilliSprites[numChops];
+                chilliGO.GetComponent<SpriteRenderer>().sprite = chilliSprites[numChops];
 
                 isDragging = false;
 
@@ -85,19 +86,29 @@ public class ChopChilliMinigameStep : MinigameStep
                     OnMinigameStepOver.Invoke(this, MedalType.Gold);
                 }
             }
+
+            Debug.Log("Chop Chilli: " + ChopChili(mousePos));
         }
 
     }
 
     private bool ChopChili(Vector2 mousePos)
     {
-        Vector2 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+        // Get the rectTransform component of the chili image
+        //RectTransform rectTransform = chilliGO.rectTransform;
 
-        Rect chiliRect = new Rect(transform.position.x - chilliImage.rectTransform.rect.width / 2,
-                                  transform.position.y - chilliImage.rectTransform.rect.height / 2,
-                                  chilliImage.rectTransform.rect.width,
-                                  chilliImage.rectTransform.rect.height);
+        // Create a ray from the mouse position
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
 
-        return chiliRect.Contains(worldPos);
+        // Raycast against the chili image
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
+
+        // Check if the raycast hit the chili image
+        if (hit.collider != null)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
