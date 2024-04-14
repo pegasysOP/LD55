@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  TimerGO: {fileID: 8559578443003394892}
 --- !u!1 &8718012577982172308
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,5 +294,10 @@ PrefabInstance:
 --- !u!224 &4031418688005239229 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4424352216830904691, guid: 35063b1d0e2db5a43acb82f6646af5d3, type: 3}
+  m_PrefabInstance: {fileID: 762248571688286414}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8559578443003394892 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8961519184505308034, guid: 35063b1d0e2db5a43acb82f6646af5d3, type: 3}
   m_PrefabInstance: {fileID: 762248571688286414}
   m_PrefabAsset: {fileID: 0}
