@@ -1,0 +1,4 @@
+public class RabbitMinigame : Minigame
+{
+    
+}
