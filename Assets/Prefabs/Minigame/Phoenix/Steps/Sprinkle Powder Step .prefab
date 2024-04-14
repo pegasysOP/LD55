@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   TimerGO: {fileID: 8559578443003394892}
+  powderGO: {fileID: 6349564694642049116, guid: cefffbb4fdc54d84088f8f3243fbe9fe, type: 3}
 --- !u!1 &8718012577982172308
 GameObject:
   m_ObjectHideFlags: 0

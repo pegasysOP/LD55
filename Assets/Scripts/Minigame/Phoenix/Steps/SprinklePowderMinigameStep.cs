@@ -13,6 +13,8 @@ public class SprinklePowderMinigameStep : MinigameStep
 
     [SerializeField] GameObject TimerGO;
 
+    [SerializeField] GameObject powderGO;
+
     public override bool StartMinigameStep()
     {
         Debug.Log("Sprinkle Powder Minigame step started");
@@ -41,6 +43,20 @@ public class SprinklePowderMinigameStep : MinigameStep
         if (timer <= 0)
         {
             OnMinigameStepOver.Invoke(this, MedalType.None);
+        }
+
+        HandleInput();
+
+    }
+
+    void HandleInput()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("Mouse input detected");
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos.z = 0;
+            Instantiate(powderGO, mousePos, Quaternion.identity);
         }
     }
 }
