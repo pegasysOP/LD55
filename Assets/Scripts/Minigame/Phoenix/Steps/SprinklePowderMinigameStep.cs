@@ -66,6 +66,7 @@ public class SprinklePowderMinigameStep : MinigameStep
     {   
         HandleInput();
         sprinkleTimer -= Time.deltaTime;
+        DestroyPowderOnExit();
     }
 
     void HandleInput()
@@ -96,6 +97,21 @@ public class SprinklePowderMinigameStep : MinigameStep
         foreach (GameObject gameObject in gameObjects)
         {
             Destroy(gameObject);
+        }
+    }
+
+    void DestroyPowderOnExit()
+    {
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Powder");
+
+        foreach (GameObject gameObject in gameObjects)
+        {
+            if(gameObject.transform.position.y < -5)
+            {
+                Debug.Log("Destroyed");
+                Destroy(gameObject);
+                PowderFilledSlider.value -= 1;
+            }    
         }
     }
 }

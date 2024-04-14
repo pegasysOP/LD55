@@ -23,6 +23,7 @@ public class MixCouldronMinigateStep : MinigameStep
     private bool isStirring = false;
 
     [SerializeField] GameObject CauldronContentsGO;
+    [SerializeField] GameObject arrowGO;
 
     [SerializeField] Slider StirCompletionSlider;
 
@@ -84,6 +85,10 @@ public class MixCouldronMinigateStep : MinigameStep
         // Stir the pot if the left mouse button is held down
         if (isStirring)
         {
+            if(arrowGO.activeInHierarchy == true)
+            {
+                arrowGO.SetActive(false);
+            }
             StirPot();
         }
         
