@@ -180,7 +180,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6845101157457136593}
-  - {fileID: 3806578900946513687}
+  - {fileID: 2173138271034076225}
   m_Father: {fileID: 5497833755877502502}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -389,8 +389,10 @@ MonoBehaviour:
   dottedLinePivot: {fileID: 578177763724109794}
   chiselPivot: {fileID: 4958743908875451464}
   chiselTransform: {fileID: 3351082614697180267}
+  timer: {fileID: 2711116265979931105}
   debugText: {fileID: 8683968343676398704}
   numberOfRounds: 3
+  timerDuration: 10
   angleTolerance: 20
   geodeRotationSpeed: 180
   geodeNormalSprite: {fileID: 21300000, guid: 2b14a816910105f41b88e4fb55b3bf5e, type: 3}
@@ -747,7 +749,7 @@ Transform:
   - {fileID: 578177763724109794}
   m_Father: {fileID: 5497833755877502502}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2491433151445687314
+--- !u!1001 &605874515874832196
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -829,7 +831,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1603552049845547781, guid: 230194e6d592fb849b8cbfd364011d4d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -94.46
+      value: -124.38
       objectReference: {fileID: 0}
     - target: {fileID: 1603552049845547781, guid: 230194e6d592fb849b8cbfd364011d4d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -845,15 +847,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1603552049845547782, guid: 230194e6d592fb849b8cbfd364011d4d, type: 3}
       propertyPath: m_Name
-      value: HealthBar
+      value: Timer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 230194e6d592fb849b8cbfd364011d4d, type: 3}
---- !u!224 &3806578900946513687 stripped
+--- !u!224 &2173138271034076225 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1603552049845547781, guid: 230194e6d592fb849b8cbfd364011d4d, type: 3}
-  m_PrefabInstance: {fileID: 2491433151445687314}
+  m_PrefabInstance: {fileID: 605874515874832196}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2711116265979931105 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3312307678363661989, guid: 230194e6d592fb849b8cbfd364011d4d, type: 3}
+  m_PrefabInstance: {fileID: 605874515874832196}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf995a84e3541e94a929794102a12938, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

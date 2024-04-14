@@ -2,7 +2,6 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,10 +13,12 @@ public class GeodeMinigameStep : MinigameStep
     [SerializeField] private Transform dottedLinePivot;
     [SerializeField] private Transform chiselPivot;
     [SerializeField] private Transform chiselTransform;
+    [SerializeField] private Timer timer;
     [SerializeField] private TextMeshProUGUI debugText;
 
     [Header("Game Paramaters")]
     [SerializeField] private int numberOfRounds;
+    [SerializeField] private float timerDuration;
     [SerializeField] private float angleTolerance;
     [SerializeField] private float geodeRotationSpeed;
 
@@ -69,9 +70,19 @@ public class GeodeMinigameStep : MinigameStep
         roundCounter = 0;
         missCounter = 0;
 
+        timer.StartTimer(timerDuration, OnTimerFinished);
+
         StartNewGeode();
 
         return true;
+    }
+
+    private void OnTimerFinished()
+    {
+        StopGeodeRotation();
+        trackingMouse = false;
+
+        HandleMinigameComplete();
     }
 
     private void HandleMinigameComplete()
@@ -79,7 +90,7 @@ public class GeodeMinigameStep : MinigameStep
         int score = 4;
 
         // each round not complete
-        score -= numberOfRounds - roundCounter;
+        score -= numberOfRounds + 1 - roundCounter;
 
         // each miss
         score -= missCounter;
