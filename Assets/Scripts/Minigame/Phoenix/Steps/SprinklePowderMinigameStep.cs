@@ -78,7 +78,6 @@ public class SprinklePowderMinigameStep : MinigameStep
         }
         if (Input.GetMouseButton(0))
         {
-            Debug.Log("Mouse input detected");
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0;
             if(sprinkleTimer <= 0)
