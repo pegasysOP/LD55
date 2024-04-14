@@ -1,19 +1,22 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Schema;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class FurnaceMinigameStep : MinigameStep
 {
+    [SerializeField] FurnaceHeatRegion heatRegionPrefab;
+    [SerializeField] Transform heatRegionContainer;
+    [SerializeField] Slider furnaceHeatSlider;
+    [SerializeField] Timer timer;
+
+    [Header("Game Paramaters")]
+    [SerializeField] private float timerDuration;
+    [SerializeField] private List<Segment> heatRegions;
+
     public override event EventHandler<MedalType> OnMinigameStepOver;
-
-    public Slider furnaceHeatSlider;
-
-    private float timerDuration = 10f;
-    private float timer;
-
-    [SerializeField] GameObject TimerGO;
 
     public override bool StartMinigameStep()
     {
@@ -23,9 +26,10 @@ public class FurnaceMinigameStep : MinigameStep
     // Start is called before the first frame update
     void Start()
     {
-        timer = timerDuration;
+        CreateHeatRegions();
+
+        timer.StartTimer(timerDuration, CalculateScore);
         furnaceHeatSlider.value = 7;
-        TimerGO.GetComponent<Slider>().maxValue = timerDuration;
     }
 
     // Update is called once per frame
@@ -33,20 +37,28 @@ public class FurnaceMinigameStep : MinigameStep
     {
         furnaceHeatSlider.value -= Time.deltaTime;
 
+        HandleInput();
+
         if (furnaceHeatSlider.value == 0 || furnaceHeatSlider.value > furnaceHeatSlider.maxValue - 0.1)
         {
             //Minigame should fail if the heat completely dissapears or reaches the maximum
             OnMinigameStepOver.Invoke(this, MedalType.None);
         }
+    }
 
-        timer -= Time.deltaTime;
-        TimerGO.GetComponent<Slider>().value = Mathf.CeilToInt(timer);
-        if (timer <= 0)
+    private void CreateHeatRegions()
+    {
+        int totalWeight = 0;
+        foreach (Segment segment in heatRegions)
+            totalWeight += segment.Weight;
+
+        float weightToWidth = heatRegionContainer.GetComponent<RectTransform>().rect.width / (float)totalWeight;
+
+        foreach (Segment segment in heatRegions)
         {
-            CalculateScore();
+            FurnaceHeatRegion heatRegion = Instantiate(heatRegionPrefab, heatRegionContainer);
+            heatRegion.Init(segment.Colour, segment.Weight * weightToWidth);
         }
-        HandleInput();
-        
     }
 
     void CalculateScore()
@@ -103,5 +115,12 @@ public class FurnaceMinigameStep : MinigameStep
                 furnaceHeatSlider.value = furnaceHeatSlider.maxValue;
             }
         }
+    }
+
+    [System.Serializable]
+    public struct Segment
+    {
+        public Color Colour;
+        public int Weight;
     }
 }
