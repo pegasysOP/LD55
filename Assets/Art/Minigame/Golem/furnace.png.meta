@@ -232,6 +232,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: furnace_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b09f0d96210301e4ca38a8e2ba978626
+      internalID: -1509961350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -247,6 +268,7 @@ TextureImporter:
       furnace_1: 261632352
       furnace_2: -319112826
       furnace_3: 1969530242
+      furnace_4: -1509961350
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

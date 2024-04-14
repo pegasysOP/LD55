@@ -34,11 +34,11 @@ RectTransform:
   - {fileID: 1090814285743589151}
   m_Father: {fileID: 127433233942707962}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 126.32}
   m_SizeDelta: {x: 700, y: 80}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2107895151397432824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,6 +338,81 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &6840001698308587063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1596939713500693203}
+  - component: {fileID: 7219497397401953750}
+  - component: {fileID: 4050145170844493468}
+  m_Layer: 5
+  m_Name: Furnace Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1596939713500693203
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6840001698308587063}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 127433233942707962}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 200, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7219497397401953750
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6840001698308587063}
+  m_CullTransparentMesh: 1
+--- !u!114 &4050145170844493468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6840001698308587063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -1612962972, guid: cf62a9c567df6a647b0d8ff015d28f2f, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &7017821723524282448
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,6 +461,7 @@ MonoBehaviour:
   score: 0
   heatRegionPrefab: {fileID: 695237772565436151, guid: 59b38e94bd6b2444785fef036dac32ac, type: 3}
   heatRegionContainer: {fileID: 621284693921932261}
+  furnaceImage: {fileID: 4050145170844493468}
   heatSlider: {fileID: 2107895151397432824}
   timer: {fileID: 1493190873513971498}
   timerDuration: 10
@@ -422,6 +498,11 @@ MonoBehaviour:
   - Colour: {r: 0.77647066, g: 0.21568629, b: 0.19215688, a: 1}
     Width: 2
     Score: 0
+  furnace0: {fileID: -1612962972, guid: cf62a9c567df6a647b0d8ff015d28f2f, type: 3}
+  furnace1: {fileID: 261632352, guid: cf62a9c567df6a647b0d8ff015d28f2f, type: 3}
+  furnace2: {fileID: -319112826, guid: cf62a9c567df6a647b0d8ff015d28f2f, type: 3}
+  furnace3: {fileID: 1969530242, guid: cf62a9c567df6a647b0d8ff015d28f2f, type: 3}
+  furnace4: {fileID: -1509961350, guid: cf62a9c567df6a647b0d8ff015d28f2f, type: 3}
 --- !u!1 &9163858400042610853
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,6 +535,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3391132932770450058}
+  - {fileID: 1596939713500693203}
   - {fileID: 2442260062613465962}
   m_Father: {fileID: 4799683074198764536}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

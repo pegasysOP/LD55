@@ -7,6 +7,7 @@ public class FurnaceMinigameStep : MinigameStep
 {
     [SerializeField] private FurnaceHeatRegion heatRegionPrefab;
     [SerializeField] private Transform heatRegionContainer;
+    [SerializeField] private Image furnaceImage;
     [SerializeField] private Slider heatSlider;
     [SerializeField] private Timer timer;
 
@@ -16,18 +17,23 @@ public class FurnaceMinigameStep : MinigameStep
     [SerializeField] private float heatingRate;
     [SerializeField] private List<Segment> heatRegions;
 
+    [Header("Furnace Images")]
+    [SerializeField] private Sprite furnace0;
+    [SerializeField] private Sprite furnace1;
+    [SerializeField] private Sprite furnace2;
+    [SerializeField] private Sprite furnace3;
+    [SerializeField] private Sprite furnace4;
+
     public override event EventHandler<MedalType> OnMinigameStepOver;
 
     public override bool StartMinigameStep()
     {
-        return true;
-    }
-
-    private void Start()
-    {
         CreateHeatRegions();
+        UpdateFurnaceImage();
 
         timer.StartTimer(timerDuration, OnTimerEnded);
+
+        return true;
     }
 
     // Update is called once per frame
@@ -35,6 +41,8 @@ public class FurnaceMinigameStep : MinigameStep
     {
         HandleCooling();
         HandleHeating();
+
+        UpdateFurnaceImage();
     }
 
     private void CreateHeatRegions()
@@ -62,7 +70,7 @@ public class FurnaceMinigameStep : MinigameStep
 
     private MedalType CalculateScore()
     {
-        float total = 0f;
+        int total = 0;
 
         foreach (Segment segment in heatRegions)
         {
@@ -78,7 +86,33 @@ public class FurnaceMinigameStep : MinigameStep
         return MedalType.None;
     }
 
-    private void HandleCooling()
+    private void UpdateFurnaceImage()
+    {
+        int total = 0;
+
+        for (int i = 0; i < heatRegions.Count; i++)
+        {
+            total += heatRegions[i].Width;
+
+            if (heatSlider.value <= total)
+            {
+                if (i <= 1) // this is gross sorry
+                    furnaceImage.sprite = furnace0;
+                else if (i <= 2)
+                    furnaceImage.sprite = furnace1;
+                else if (i <= 3)
+                    furnaceImage.sprite = furnace2;
+                else if (i <= 4)
+                    furnaceImage.sprite = furnace3;
+                else
+                    furnaceImage.sprite = furnace4;
+
+                break;
+            }
+        }
+    }
+
+        private void HandleCooling()
     {
         if (!Input.GetMouseButton(0))
             heatSlider.value -= coolingRate * Time.deltaTime;
