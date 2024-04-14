@@ -13,6 +13,8 @@ public class FurnaceMinigameStep : MinigameStep
     private float timerDuration = 10f;
     private float timer;
 
+    [SerializeField] GameObject TimerGO;
+
     public override bool StartMinigameStep()
     {
         return true;
@@ -23,6 +25,7 @@ public class FurnaceMinigameStep : MinigameStep
     {
         timer = timerDuration;
         furnaceHeatSlider.value = 7;
+        TimerGO.GetComponent<Slider>().maxValue = timerDuration;
     }
 
     // Update is called once per frame
@@ -37,44 +40,50 @@ public class FurnaceMinigameStep : MinigameStep
         }
 
         timer -= Time.deltaTime;
+        TimerGO.GetComponent<Slider>().value = Mathf.CeilToInt(timer);
         if (timer <= 0)
         {
-            if(furnaceHeatSlider.value < 10 && furnaceHeatSlider.value > 9)
-            {
-                OnMinigameStepOver.Invoke(this, MedalType.Bronze);
-            }
-            if (furnaceHeatSlider.value < 9 && furnaceHeatSlider.value > 8)
-            {
-                OnMinigameStepOver.Invoke(this, MedalType.Silver);
-            }
-            if (furnaceHeatSlider.value < 8 && furnaceHeatSlider.value > 7)
-            {
-                OnMinigameStepOver.Invoke(this, MedalType.Gold);
-            }
-            if (furnaceHeatSlider.value < 7 && furnaceHeatSlider.value > 6)
-            {
-                OnMinigameStepOver.Invoke(this, MedalType.Jade);
-            }
-
-            if (furnaceHeatSlider.value < 6 && furnaceHeatSlider.value > 5)
-            {
-                OnMinigameStepOver.Invoke(this, MedalType.Gold);
-            }
-            if (furnaceHeatSlider.value < 5 && furnaceHeatSlider.value > 4)
-            {
-                OnMinigameStepOver.Invoke(this, MedalType.Silver);
-            }
-            if (furnaceHeatSlider.value < 4 && furnaceHeatSlider.value > 3)
-            {
-                OnMinigameStepOver.Invoke(this, MedalType.Bronze);
-            }
-            if (furnaceHeatSlider.value < 3 && furnaceHeatSlider.value > 0)
-            {
-                OnMinigameStepOver.Invoke(this, MedalType.None);
-            }
+            CalculateScore();
         }
         HandleInput();
         
+    }
+
+    void CalculateScore()
+    {
+        if (furnaceHeatSlider.value < 10 && furnaceHeatSlider.value > 9)
+        {
+            OnMinigameStepOver.Invoke(this, MedalType.Bronze);
+        }
+        if (furnaceHeatSlider.value < 9 && furnaceHeatSlider.value > 8)
+        {
+            OnMinigameStepOver.Invoke(this, MedalType.Silver);
+        }
+        if (furnaceHeatSlider.value < 8 && furnaceHeatSlider.value > 7)
+        {
+            OnMinigameStepOver.Invoke(this, MedalType.Gold);
+        }
+        if (furnaceHeatSlider.value < 7 && furnaceHeatSlider.value > 6)
+        {
+            OnMinigameStepOver.Invoke(this, MedalType.Jade);
+        }
+
+        if (furnaceHeatSlider.value < 6 && furnaceHeatSlider.value > 5)
+        {
+            OnMinigameStepOver.Invoke(this, MedalType.Gold);
+        }
+        if (furnaceHeatSlider.value < 5 && furnaceHeatSlider.value > 4)
+        {
+            OnMinigameStepOver.Invoke(this, MedalType.Silver);
+        }
+        if (furnaceHeatSlider.value < 4 && furnaceHeatSlider.value > 3)
+        {
+            OnMinigameStepOver.Invoke(this, MedalType.Bronze);
+        }
+        if (furnaceHeatSlider.value < 3 && furnaceHeatSlider.value > 0)
+        {
+            OnMinigameStepOver.Invoke(this, MedalType.None);
+        }
     }
 
     void HandleInput()
