@@ -19,7 +19,7 @@ public class MixCouldronMinigateStep : MinigameStep
 
     private void OnTimerFinished()
     {
-        Debug.Log("Mix Couldron Minigame step started");
+        Debug.Log("Mix Couldron Minigame step ended");
         OnMinigameStepOver.Invoke(this, MedalType.None);
     }
 
