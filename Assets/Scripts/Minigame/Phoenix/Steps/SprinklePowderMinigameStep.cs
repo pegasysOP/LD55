@@ -12,6 +12,9 @@ public class SprinklePowderMinigameStep : MinigameStep
 
     [SerializeField] Timer timer;
 
+    private float sprinkleDelay = 0.05f;
+    private float sprinkleTimer;
+
     [SerializeField] GameObject TimerGO;
 
     [SerializeField] GameObject powderGO;
@@ -20,6 +23,7 @@ public class SprinklePowderMinigameStep : MinigameStep
     {
         Debug.Log("Sprinkle Powder Minigame step started");
         timer.StartTimer(timerDuration, OnTimerFinished);
+        sprinkleTimer = sprinkleDelay;
         return true;
     }
 
@@ -38,6 +42,7 @@ public class SprinklePowderMinigameStep : MinigameStep
     void Update()
     {   
         HandleInput();
+        sprinkleTimer -= Time.deltaTime;
     }
 
     void HandleInput()
@@ -48,12 +53,16 @@ public class SprinklePowderMinigameStep : MinigameStep
             Debug.Log("Sprinkle Powder Minigame step complete");
             OnMinigameStepOver.Invoke(this, MedalType.Bronze);
         }
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             Debug.Log("Mouse input detected");
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0;
-            Instantiate(powderGO, mousePos, Quaternion.identity);
+            if(sprinkleTimer <= 0)
+            {
+                Instantiate(powderGO, mousePos, Quaternion.identity);
+                sprinkleTimer = sprinkleDelay;
+            }      
         }
     }
 
