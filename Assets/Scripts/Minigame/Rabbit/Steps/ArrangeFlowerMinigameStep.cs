@@ -9,7 +9,7 @@ public class ArrangeFlowerMinigameStep : MinigameStep
     public override event EventHandler<MedalType> OnMinigameStepOver;
 
     [SerializeField] Timer timer;
-    float timerDuration = 100f;
+    [SerializeField] float timerDuration = 100f;
 
     bool isDragging = false;
 

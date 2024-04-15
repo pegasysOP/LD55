@@ -231,6 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   timer: {fileID: 3032755627164084491}
+  timerDuration: 10
   numPetals: 7
 --- !u!1 &6629086022154844949
 GameObject:
