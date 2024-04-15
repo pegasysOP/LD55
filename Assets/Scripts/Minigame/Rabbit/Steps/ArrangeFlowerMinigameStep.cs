@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class ArrangeFlowerMinigameStep : MinigameStep
 {
@@ -9,6 +10,10 @@ public class ArrangeFlowerMinigameStep : MinigameStep
 
     [SerializeField] Timer timer;
     float timerDuration = 10f;
+
+    bool isDragging = false;
+
+    GameObject petal = null;
 
     public override bool StartMinigameStep()
     {
@@ -36,5 +41,62 @@ public class ArrangeFlowerMinigameStep : MinigameStep
             Debug.Log("Arrange flower Minigame step complete");
             OnMinigameStepOver.Invoke(this, MedalType.Bronze);
         }
+        HandleInput();
+        HandleFlowerDraggingLogic();
+    }
+
+    void HandleFlowerDraggingLogic()
+    {
+        if (isDragging)
+        {
+            if(petal == null)
+            {
+                petal = DragPetal(Input.mousePosition);
+            }
+            
+            if (petal != null)
+            {
+                petal.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
+            }
+        }
+        else
+        {
+            if (petal != null)
+            {
+                petal = null;
+            }
+        }
+    }
+
+    void HandleInput()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            isDragging = true;
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            isDragging = false;
+        }
+    }
+
+    private GameObject DragPetal(Vector2 mousePos)
+    {
+        // Get the rectTransform component of the chili image
+        //RectTransform rectTransform = chilliGO.rectTransform;
+
+        // Create a ray from the mouse position
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+
+        // Raycast against the chili image
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
+
+        // Check if the raycast hit the petal
+        if (hit.collider != null)
+        {
+            return hit.collider.gameObject;
+        }
+
+        return null;
     }
 }

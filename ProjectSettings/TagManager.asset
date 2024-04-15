@@ -8,6 +8,8 @@ TagManager:
   - Chilli
   - Powder
   - Undefined
+  - PetalBrown
+  - PetalBlue
   layers:
   - Default
   - TransparentFX
