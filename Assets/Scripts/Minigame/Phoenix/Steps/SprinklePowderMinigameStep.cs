@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class SprinklePowderMinigameStep : MinigameStep
 {
@@ -83,6 +84,10 @@ public class SprinklePowderMinigameStep : MinigameStep
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0;
+
+            mousePos.x += Random.Range(-0.5f, 0.5f);
+            mousePos.y += Random.Range(-0.5f, 0.5f);
+
             if(sprinkleTimer <= 0)
             {
                 PowderFilledSlider.value += 1;
