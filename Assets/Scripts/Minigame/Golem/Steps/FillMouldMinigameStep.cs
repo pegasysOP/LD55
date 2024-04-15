@@ -44,16 +44,12 @@ public class FillMouldMinigameStep : MinigameStep
 
         if (fillAmount >= 1f + overFillAllowance)
         {
-            Debug.Log("Fill amount: " + fillAmount);
-            Debug.Log("Allowance: " + (1 + overFillAllowance));
             //Minigame should fail if the heat completely dissapears or reaches the maximum
             OnMinigameStepOver.Invoke(this, MedalType.None);
         }
 
         if(flowRateSlider.value == 0 && fillAmount >= 0.95)
         {
-            Debug.Log("Fill amount: " + fillAmount);
-            Debug.Log("Allowance: " + (1 + overFillAllowance));
             MedalType medal = GetMedalTypeFromFill(fillAmount);
             OnMinigameStepOver.Invoke(this, medal);
         }
