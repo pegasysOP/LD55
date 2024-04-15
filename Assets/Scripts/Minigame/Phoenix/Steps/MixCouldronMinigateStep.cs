@@ -27,6 +27,12 @@ public class MixCouldronMinigateStep : MinigameStep
 
     [SerializeField] Slider StirCompletionSlider;
 
+    [Header("Speed Stuff")]
+    [SerializeField] Image sliderBackground;
+    [SerializeField] Color fastColour;
+    [SerializeField] Color goodColour;
+    [SerializeField] Color slowColour;
+
 
     public override bool StartMinigameStep()
     {
@@ -112,25 +118,34 @@ public class MixCouldronMinigateStep : MinigameStep
         float currentAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         //Debug.Log("CurrentAngle: " + currentAngle);
 
-            // Calculate the angle difference between the current and last mouse positions
-            float angleDifference = Mathf.DeltaAngle(lastAngle, currentAngle);
+        // Calculate the angle difference between the current and last mouse positions
+        float angleDifference = Mathf.DeltaAngle(lastAngle, currentAngle);
 
-            if(angleDifference < 0)
-            {
-                // Rotate the pot based on the angle difference
-                CauldronContentsGO.transform.Rotate(Vector3.forward, angleDifference);
-            }
-            currentTime = Time.time;
-            currentSpeed =  CalculateRotationSpeed(currentAngle, lastAngle, Time.deltaTime);
+        if(angleDifference < 0)
+        {
+            // Rotate the pot based on the angle difference
+            CauldronContentsGO.transform.Rotate(Vector3.forward, angleDifference);
+        }
+        currentTime = Time.time;
+        currentSpeed =  CalculateRotationSpeed(currentAngle, lastAngle, Time.deltaTime);
 
-            if(currentSpeed > 180 && currentSpeed < 360)
-            {
-                StirCompletionSlider.value += 5 * Time.deltaTime;
-            }
+        if (currentSpeed <= 180) // slow
+        {
+            sliderBackground.color = slowColour;
+        }
+        else if(currentSpeed < 360) // good
+        {
+            StirCompletionSlider.value += 5 * Time.deltaTime;
+            sliderBackground.color = goodColour;
+        }
+        else
+        {
+            sliderBackground.color = fastColour;
+        }
 
-            // Update the last angle for the next frame
-            lastAngle = currentAngle;
-            lastTime = currentTime;
+        // Update the last angle for the next frame
+        lastAngle = currentAngle;
+        lastTime = currentTime;
     }
 
     public float CalculateRotationSpeed(float initialAngle, float finalAngle, float deltaTime)
