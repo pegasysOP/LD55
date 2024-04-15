@@ -40,26 +40,24 @@ public class SprinklePowderMinigameStep : MinigameStep
         //Get the slider value and score accordingly 
         DestroyPowder();
 
-        if (PowderFilledSlider.value > 55 && PowderFilledSlider.value < 65)
-        {
-            OnMinigameStepOver.Invoke(this, MedalType.Jade);
-        }
-        else if (PowderFilledSlider.value > 45 && PowderFilledSlider.value < 55)
-        {
-            OnMinigameStepOver.Invoke(this, MedalType.Gold);
-        }
-        else if (PowderFilledSlider.value > 35 && PowderFilledSlider.value < 45)
-        {
-            OnMinigameStepOver.Invoke(this, MedalType.Silver);
-        }
-        else if (PowderFilledSlider.value > 25 && PowderFilledSlider.value < 35)
-        {
-            OnMinigameStepOver.Invoke(this, MedalType.Bronze);
-        }
-        else
-        {
+        if (PowderFilledSlider.value < 45)
             OnMinigameStepOver.Invoke(this, MedalType.None);
-        } 
+        else if (PowderFilledSlider.value < 65)
+            OnMinigameStepOver.Invoke(this, MedalType.Bronze);
+        else if (PowderFilledSlider.value < 85)
+            OnMinigameStepOver.Invoke(this, MedalType.Silver);
+        else if (PowderFilledSlider.value < 100)
+            OnMinigameStepOver.Invoke(this, MedalType.Gold);
+        else if (PowderFilledSlider.value < 115)
+            OnMinigameStepOver.Invoke(this, MedalType.Jade);
+        else if (PowderFilledSlider.value < 130)
+            OnMinigameStepOver.Invoke(this, MedalType.Gold);
+        else if (PowderFilledSlider.value < 145)
+            OnMinigameStepOver.Invoke(this, MedalType.Silver);
+        else if (PowderFilledSlider.value < 160)
+            OnMinigameStepOver.Invoke(this, MedalType.Bronze);
+        else
+            OnMinigameStepOver.Invoke(this, MedalType.None);
     }
 
     // Start is called before the first frame update
