@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -22,10 +23,16 @@ public class ChopChilliMinigameStep : MinigameStep
 
     [SerializeField] Timer timer;
 
+    GameObject knifeGO;
+
+    [SerializeField] GameObject[] guidelines;
+
     public override bool StartMinigameStep()
     {
         Debug.Log("Chop Chilli Minigame step started");
         timer.StartTimer(timerDuration, OnTimerFinished);
+        knifeGO = GameObject.FindGameObjectWithTag("Knife");
+
         return true;
     }
 
@@ -50,6 +57,20 @@ public class ChopChilliMinigameStep : MinigameStep
         }
 
         HandleInput();
+
+        Vector3 pos = knifeGO.transform.position;
+        pos.y = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
+
+        if(pos.y > 1.9)
+        {
+            pos.y = 1.9f;
+        }
+
+        pos.z = 0;
+        Debug.Log(pos.y);
+        knifeGO.transform.position = pos;
+
+        Debug.Log(knifeGO.transform.position);
         
     }
 
@@ -64,7 +85,28 @@ public class ChopChilliMinigameStep : MinigameStep
             isDragging = false;
         }
 
-        if (isDragging)
+        if (Input.GetMouseButtonDown(0))
+        {
+            for (int i = 0; i < guidelines.Length; i++)
+            {
+                if (Mathf.Abs(knifeGO.transform.position.y - guidelines[i].transform.position.y) <= 0.1f && guidelines[i].activeInHierarchy == true)
+                {
+                    guidelines[i].SetActive(false);
+                    numChops++;
+                    chilliGO.GetComponent<SpriteRenderer>().sprite = chilliSprites[numChops];
+                }
+            }
+
+            if (numChops >= numChopsRequired)
+            {
+                Debug.Log("Chili chopping minigame completed!");
+                OnMinigameStepOver.Invoke(this, MedalType.Gold);
+            }
+        }
+        
+
+
+        /*if (isDragging)
         {
             Vector2 mousePos = Input.mousePosition;
 
@@ -84,7 +126,7 @@ public class ChopChilliMinigameStep : MinigameStep
             }
 
             Debug.Log("Chop Chilli: " + ChopChili(mousePos));
-        }
+        }*/
 
     }
 
