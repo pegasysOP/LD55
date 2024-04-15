@@ -51,8 +51,17 @@ public class ArrangeFlowerMinigameStep : MinigameStep
 
         if(currentPetalsMatched == numPetals)
         {
-            OnMinigameStepOver.Invoke(this, MedalType.Jade);
+            StartCoroutine(WaitThenEnd());
         }
+    }
+
+    private IEnumerator WaitThenEnd()
+    {
+        timer.StopTimer();
+
+        yield return new WaitForSeconds(1f);
+
+        OnMinigameStepOver.Invoke(this, MedalType.Jade);
     }
 
     void HandleFlowerDraggingLogic()

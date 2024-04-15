@@ -231,7 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   timer: {fileID: 3032755627164084491}
-  timerDuration: 10
+  timerDuration: 8
   numPetals: 7
 --- !u!1 &6629086022154844949
 GameObject:
@@ -508,6 +508,10 @@ PrefabInstance:
     - target: {fileID: 1603552049845547782, guid: 230194e6d592fb849b8cbfd364011d4d, type: 3}
       propertyPath: m_Name
       value: Timer
+      objectReference: {fileID: 0}
+    - target: {fileID: 7844142854738970628, guid: 230194e6d592fb849b8cbfd364011d4d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.036697388
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

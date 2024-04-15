@@ -96,13 +96,21 @@ public class WaveWandMinigameStep : MinigameStep
 
         if(checkPointsHit == numCheckpoints)
         {
-            DestroyPaint();
-
-            Cursor.visible = true;
-
-            OnMinigameStepOver.Invoke(this, MedalType.Jade);
+            StartCoroutine(WaitThenEnd());
         }
         
+    }
+
+    private IEnumerator WaitThenEnd()
+    {
+        timer.StopTimer();
+
+        yield return new WaitForSeconds(1f);
+
+        DestroyPaint();
+        Cursor.visible = true;
+
+        OnMinigameStepOver.Invoke(this, MedalType.Jade);
     }
 
     void Draw(Vector2 mousePosition)

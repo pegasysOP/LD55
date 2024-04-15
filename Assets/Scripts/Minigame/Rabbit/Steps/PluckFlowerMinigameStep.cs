@@ -10,7 +10,7 @@ public class PluckFlowerMinigameStep : MinigameStep
     public override event EventHandler<MedalType> OnMinigameStepOver;
     
     [SerializeField] Timer timer;
-    float timerDuration = 15f;
+    [SerializeField] float timerDuration = 15f;
 
     [SerializeField] GameObject[] petals;
 
@@ -63,9 +63,18 @@ public class PluckFlowerMinigameStep : MinigameStep
 
         if(petalsToPluck == 0)
         {
-            OnMinigameStepOver.Invoke(this, MedalType.Jade);
+            StartCoroutine(WaitThenEnd());
         }
 
+    }
+
+    private IEnumerator WaitThenEnd()
+    {
+        timer.StopTimer();
+
+        yield return new WaitForSeconds(1f);
+
+        OnMinigameStepOver.Invoke(this, MedalType.Jade);
     }
 
     void HandlePluckLogic()
