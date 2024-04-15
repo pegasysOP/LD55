@@ -30,7 +30,5 @@ public class GolemMinigame : Minigame
 
             OnMinigameOver.Invoke(this, (MedalType)total);
         }
-            //OnMinigameOver.Invoke(this, score);
-            //base.OnMinigameStepOver(sender, score);
     }
 }
