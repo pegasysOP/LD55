@@ -28,7 +28,9 @@ public class ChopChilliMinigameStep : MinigameStep
     [SerializeField] GameObject[] guidelines;
 
     int roundCounter = 0;
-    int numberOfRounds = 2;
+    int numberOfRounds = 3;
+
+    int failedChops = 0;
 
     public override bool StartMinigameStep()
     {
@@ -41,7 +43,22 @@ public class ChopChilliMinigameStep : MinigameStep
 
     private void OnTimerFinished()
     {
-        OnMinigameStepOver.Invoke(this, MedalType.None);
+        if(roundCounter >= 2 && failedChops == 0)
+        {
+            OnMinigameStepOver.Invoke(this, MedalType.Gold);
+        }
+        else if (roundCounter >= 2 && failedChops > 0)
+        {
+            OnMinigameStepOver.Invoke(this, MedalType.Silver);
+        }
+        else if (roundCounter >= 1)
+        {
+            OnMinigameStepOver.Invoke(this, MedalType.Bronze);
+        }
+        else
+        {
+            OnMinigameStepOver.Invoke(this, MedalType.None);
+        }
     }
 
     // Start is called before the first frame update
@@ -69,8 +86,15 @@ public class ChopChilliMinigameStep : MinigameStep
 
     void HandleMinigameComplete()
     {
-        //TODO: Calculate score here
-        OnMinigameStepOver.Invoke(this, MedalType.Gold);
+        if(failedChops == 0)
+        {
+            OnMinigameStepOver.Invoke(this, MedalType.Jade);
+        }
+        else
+        {
+            OnMinigameStepOver.Invoke(this, MedalType.Gold);
+        }
+        
     }
 
     // Update is called once per frame
@@ -126,6 +150,10 @@ public class ChopChilliMinigameStep : MinigameStep
                     }
                     numChops++;
                     chilliGO.GetComponent<SpriteRenderer>().sprite = chilliSprites[numChops];
+                }
+                else
+                {
+                    failedChops++;
                 }
             }
 
