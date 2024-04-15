@@ -68,6 +68,7 @@ MonoBehaviour:
   bonkClip: {fileID: 8300000, guid: 64c04fb0c4bf042468e655fff2e2e5b1, type: 3}
   chopClip: {fileID: 8300000, guid: 2629cf86de833dc4d94ea4573b85a538, type: 3}
   finalChopClip: {fileID: 8300000, guid: 242a4704a81436d4e895d2f77cc6c53d, type: 3}
+  pitchRange: 0.2
 --- !u!82 &4941336270054712186
 AudioSource:
   m_ObjectHideFlags: 0

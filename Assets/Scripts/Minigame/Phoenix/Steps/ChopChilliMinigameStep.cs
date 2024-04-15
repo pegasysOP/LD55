@@ -3,6 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class ChopChilliMinigameStep : MinigameStep
 {
@@ -37,6 +38,7 @@ public class ChopChilliMinigameStep : MinigameStep
     [SerializeField] private AudioClip bonkClip;
     [SerializeField] private AudioClip chopClip;
     [SerializeField] private AudioClip finalChopClip;
+    [SerializeField] float pitchRange;
 
     public override bool StartMinigameStep()
     {
@@ -151,7 +153,9 @@ public class ChopChilliMinigameStep : MinigameStep
                 if (numChops + 1 < guidelines.Length)
                 {
                     guidelines[numChops + 1].SetActive(true);
+                    audioSource.pitch = 1f + Random.Range(-pitchRange / 2f, pitchRange / 2f);
                     audioSource.PlayOneShot(chopClip);
+                    
                 }
                 numChops++;
                 chilliGO.GetComponent<SpriteRenderer>().sprite = chilliSprites[numChops];
