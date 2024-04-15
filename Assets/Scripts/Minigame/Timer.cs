@@ -20,6 +20,11 @@ public class Timer : MonoBehaviour
         running = true;
     }
 
+    public void StopTimer()
+    {
+        running = false;
+    }
+
     void Update()
     {
         if (!running)
