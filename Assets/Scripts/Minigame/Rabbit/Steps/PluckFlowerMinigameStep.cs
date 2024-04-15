@@ -73,8 +73,8 @@ public class PluckFlowerMinigameStep : MinigameStep
             if (petal != null)
             {
                 Debug.Log("Petal: " + petal.name);
-                petal.AddComponent<Rigidbody2D>();
                 petal.GetComponent<Rigidbody2D>().gravityScale = 0.25f;
+                petal.GetComponent<PolygonCollider2D>().enabled = false;
                 petalsToPluck -= 1;
                 petal = null;
             }
