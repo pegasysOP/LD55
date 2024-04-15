@@ -4,14 +4,16 @@ using UnityEngine;
 
 public abstract class Minigame : MonoBehaviour
 {
-    [SerializeField] private List<MinigameStep> steps;
+    [SerializeField] protected List<MinigameStep> steps;
 
-    private MinigameStep minigameStepInstance;
+    protected List<MedalType> medals;
+
+    protected MinigameStep minigameStepInstance;
 
     /// <summary>
     /// Thrown when the minigame is over, gives the score achieved
     /// </summary>
-    public event EventHandler<MedalType> OnMinigameOver;
+    public virtual event EventHandler<MedalType> OnMinigameOver;
 
     /// <summary>
     /// Starts the minigame
@@ -19,6 +21,10 @@ public abstract class Minigame : MonoBehaviour
     /// <returns>Returns true if started successfully</returns>
     public virtual bool StartMinigame()
     {
+        if(medals == null)
+        {
+            medals = new List<MedalType>();
+        }
         //Get each minigame from the list of steps
         return StartMinigameStep();
     }

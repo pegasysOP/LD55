@@ -24,7 +24,7 @@ public class FillMouldMinigameStep : MinigameStep
 
     private void OnTimerFinished()
     {
-        OnMinigameStepOver.Invoke(this, MedalType.Gold);
+        OnMinigameStepOver.Invoke(this, MedalType.Bronze);
     }
 
     void Update()
