@@ -470,6 +470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   timer: {fileID: 5117575434914151374}
+  timerDuration: 8
   stirringRadius: 1
   CauldronContentsGO: {fileID: 1318465010995162874}
   arrowGO: {fileID: 5623715192554771190}

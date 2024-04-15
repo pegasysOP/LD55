@@ -9,7 +9,7 @@ public class ChopChilliMinigameStep : MinigameStep
 {
     public override event EventHandler<MedalType> OnMinigameStepOver;
 
-    private float timerDuration = 10f;
+    [SerializeField] private float timerDuration = 10f;
 
     [SerializeField] Sprite[] chilliSprites;
 

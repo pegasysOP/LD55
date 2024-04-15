@@ -9,7 +9,7 @@ public class MixCouldronMinigateStep : MinigameStep
     public override event EventHandler<MedalType> OnMinigameStepOver;
 
     [SerializeField] Timer timer;
-    private float timerDuration = 10f;
+    [SerializeField] private float timerDuration = 10f;
 
     public float stirringRadius = 500000f; // Adjust the radius of the circular stirring motion
     private Vector3 stirringCenter; // The center of the circular stirring motion
@@ -100,9 +100,18 @@ public class MixCouldronMinigateStep : MinigameStep
 
         if (StirCompletionSlider.value == StirCompletionSlider.maxValue)
         {
-            OnMinigameStepOver.Invoke(this, MedalType.Jade);
+            StartCoroutine(WaitThenEnd());
         }
 
+    }
+
+    private IEnumerator WaitThenEnd()
+    {
+        timer.StopTimer();
+
+        yield return new WaitForSeconds(1f);
+
+        OnMinigameStepOver.Invoke(this, MedalType.Jade);
     }
 
     void StirPot()

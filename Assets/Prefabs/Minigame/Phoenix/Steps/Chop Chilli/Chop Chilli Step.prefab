@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  timerDuration: 8
   chilliSprites:
   - {fileID: 1906786856, guid: ba9406d3c9670104da5604d05762ae9c, type: 3}
   - {fileID: 1613139920, guid: ba9406d3c9670104da5604d05762ae9c, type: 3}
