@@ -26,12 +26,18 @@ public class WaveWandMinigameStep : MinigameStep
     {
         Debug.Log("Wave wand minigame started");
         timer.StartTimer(timerDuration, OnTimerFinished);
+
+        Cursor.visible = false;
+
         return true;
     }
 
     void OnTimerFinished()
     {
         DestroyPaint();
+
+        Cursor.visible = true;
+
         OnMinigameStepOver.Invoke(this, MedalType.None);
     }
 
@@ -91,6 +97,9 @@ public class WaveWandMinigameStep : MinigameStep
         if(checkPointsHit == numCheckpoints)
         {
             DestroyPaint();
+
+            Cursor.visible = true;
+
             OnMinigameStepOver.Invoke(this, MedalType.Jade);
         }
         
