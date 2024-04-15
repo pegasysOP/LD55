@@ -47,21 +47,30 @@ public class PluckFlowerMinigameStep : MinigameStep
             OnMinigameStepOver.Invoke(this, MedalType.Bronze);
         }
 
+        HandlePluckLogic();
+
         HandleInput();
 
+        if(petalsToPluck == 0)
+        {
+            OnMinigameStepOver.Invoke(this, MedalType.Jade);
+        }
+
+    }
+
+    void HandlePluckLogic()
+    {
         if (isDragging)
         {
-            if (HitPetal(Input.mousePosition))
+            petal = DragPetal(Input.mousePosition);
+            if (petal != null)
             {
-                petal = DragPetal(Input.mousePosition);
                 petal.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
-
             }
         }
         else
         {
-            
-            if(petal != null)
+            if (petal != null)
             {
                 Debug.Log("Petal: " + petal.name);
                 petal.AddComponent<Rigidbody2D>();
@@ -69,14 +78,7 @@ public class PluckFlowerMinigameStep : MinigameStep
                 petalsToPluck -= 1;
                 petal = null;
             }
-
         }
-
-        if(petalsToPluck == 0)
-        {
-            OnMinigameStepOver.Invoke(this, MedalType.Jade);
-        }
-
     }
 
 
@@ -92,25 +94,6 @@ public class PluckFlowerMinigameStep : MinigameStep
         }
     }
 
-    private bool HitPetal(Vector2 mousePos)
-    {
-        // Get the rectTransform component of the chili image
-        //RectTransform rectTransform = chilliGO.rectTransform;
-
-        // Create a ray from the mouse position
-        Ray ray = Camera.main.ScreenPointToRay(mousePos);
-
-        // Raycast against the chili image
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
-
-        // Check if the raycast hit the petal
-        if (hit.collider != null)
-        {
-            return true;
-        }
-
-        return false;
-    }
 
     private GameObject DragPetal(Vector2 mousePos)
     {
