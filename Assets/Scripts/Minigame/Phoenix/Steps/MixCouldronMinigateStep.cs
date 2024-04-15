@@ -11,7 +11,7 @@ public class MixCouldronMinigateStep : MinigameStep
     [SerializeField] Timer timer;
     private float timerDuration = 10f;
 
-    public float stirringRadius = 50f; // Adjust the radius of the circular stirring motion
+    public float stirringRadius = 500000f; // Adjust the radius of the circular stirring motion
     private Vector3 stirringCenter; // The center of the circular stirring motion
     private float lastAngle; // The angle of the last mouse position relative to the stirring center
 
@@ -112,9 +112,6 @@ public class MixCouldronMinigateStep : MinigameStep
         float currentAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         //Debug.Log("CurrentAngle: " + currentAngle);
 
-        // Check if the mouse is within the stirring radius
-        if (direction.magnitude <= stirringRadius)
-        {
             // Calculate the angle difference between the current and last mouse positions
             float angleDifference = Mathf.DeltaAngle(lastAngle, currentAngle);
 
@@ -134,12 +131,6 @@ public class MixCouldronMinigateStep : MinigameStep
             // Update the last angle for the next frame
             lastAngle = currentAngle;
             lastTime = currentTime;
-        }
-        else
-        {
-            // Reset the last angle if the mouse is outside the stirring radius
-            lastAngle = 0f;
-        }
     }
 
     public float CalculateRotationSpeed(float initialAngle, float finalAngle, float deltaTime)
