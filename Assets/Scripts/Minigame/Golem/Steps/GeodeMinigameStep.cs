@@ -173,6 +173,7 @@ public class GeodeMinigameStep : MinigameStep
         }
 
         geodeSprite.sprite = geodeOpenSprite;
+        dottedLinePivot.gameObject.SetActive(false);
         audioSource.PlayOneShot(breakClip);
     }
 
@@ -193,6 +194,7 @@ public class GeodeMinigameStep : MinigameStep
     {
         float angle = Random.Range(0f, 360f);
         dottedLinePivot.Rotate(Vector3.forward, angle, Space.Self);
+        dottedLinePivot.gameObject.SetActive(true);
     }
 
     private IEnumerator HandleGeodeRotation()
