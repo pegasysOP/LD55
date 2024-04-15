@@ -17,7 +17,12 @@ public class PluckFlowerMinigameStep : MinigameStep
 
     bool isDragging = false;
 
+    bool isPlaying = false;
+
     int petalsToPluck;
+
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip pluckClip;
 
     public override bool StartMinigameStep()
     {
@@ -68,6 +73,13 @@ public class PluckFlowerMinigameStep : MinigameStep
             if (petal != null)
             {
                 petal.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
+
+                if (!isPlaying)
+                {
+                    audioSource.PlayOneShot(pluckClip);
+                    isPlaying = true;
+                }
+                
             }
         }
         else
@@ -79,6 +91,7 @@ public class PluckFlowerMinigameStep : MinigameStep
                 petal.GetComponent<PolygonCollider2D>().enabled = false;
                 petalsToPluck -= 1;
                 petal = null;
+                isPlaying = false;
             }
         }
     }
