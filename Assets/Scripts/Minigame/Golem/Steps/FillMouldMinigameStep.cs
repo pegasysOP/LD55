@@ -11,9 +11,12 @@ public class FillMouldMinigameStep : MinigameStep
     [SerializeField] private Transform flaskTransform;
 
     [SerializeField] private Timer timer;
+
+    [Header("Game Parameters")]
     [SerializeField] float timerDuration = 10f;
+    [SerializeField] float overFillAllowance = 0.1f;
 
-
+    private float fillAmount;
 
     public override bool StartMinigameStep()
     {
@@ -24,24 +27,41 @@ public class FillMouldMinigameStep : MinigameStep
 
     private void OnTimerFinished()
     {
-        OnMinigameStepOver.Invoke(this, MedalType.Bronze);
+        OnMinigameStepOver.Invoke(this, GetMedalTypeFromFill(fillAmount));
     }
 
     void Update()
     {
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Space))
         {
             OnMinigameStepOver.Invoke(this, MedalType.Silver);
         }
+#endif
 
-        filledAmountSlider.value += flowRateSlider.value * Time.deltaTime;
+        fillAmount += flowRateSlider.value * Time.deltaTime;
+        filledAmountSlider.value = fillAmount > 1f ? 1f : fillAmount;
 
-        if (filledAmountSlider.value == filledAmountSlider.maxValue)
+        if (fillAmount >= 1 + overFillAllowance)
         {
             //Minigame should fail if the heat completely dissapears or reaches the maximum
             OnMinigameStepOver.Invoke(this, MedalType.None);
         }
 
         flaskTransform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.Euler(0, 0, -45 + flowRateSlider.value * 45));
+    }
+
+    private MedalType GetMedalTypeFromFill(float fill)
+    {
+        if (fill >= 0.95f)
+            return MedalType.Jade;
+        else if (fill >= 0.85)
+            return MedalType.Gold;
+        else if (fill >= 0.75)
+            return MedalType.Silver;
+        else if (fill >= 0.65)
+            return MedalType.Bronze;
+        else
+            return MedalType.None;
     }
 }
