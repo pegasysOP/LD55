@@ -177,6 +177,7 @@ MonoBehaviour:
   - {fileID: 5768497624431042786}
   audioSource: {fileID: 2297342064368621596}
   pluckClip: {fileID: 8300000, guid: 3195a6c05187d554db976f39e2039e4b, type: 3}
+  pitchRange: 0.2
 --- !u!82 &2297342064368621596
 AudioSource:
   m_ObjectHideFlags: 0

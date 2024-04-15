@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PluckFlowerMinigameStep : MinigameStep
 {
@@ -23,6 +24,8 @@ public class PluckFlowerMinigameStep : MinigameStep
 
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip pluckClip;
+
+    [SerializeField] float pitchRange;
 
     public override bool StartMinigameStep()
     {
@@ -76,6 +79,7 @@ public class PluckFlowerMinigameStep : MinigameStep
 
                 if (!isPlaying)
                 {
+                    audioSource.pitch = 1f + Random.Range(-pitchRange / 2f, pitchRange / 2f);
                     audioSource.PlayOneShot(pluckClip);
                     isPlaying = true;
                 }
