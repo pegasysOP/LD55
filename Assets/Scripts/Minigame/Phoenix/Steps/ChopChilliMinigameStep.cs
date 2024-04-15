@@ -32,6 +32,12 @@ public class ChopChilliMinigameStep : MinigameStep
 
     int failedChops = 0;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip bonkClip;
+    [SerializeField] private AudioClip chopClip;
+    [SerializeField] private AudioClip finalChopClip;
+
     public override bool StartMinigameStep()
     {
         Debug.Log("Chop Chilli Minigame step started");
@@ -139,22 +145,22 @@ public class ChopChilliMinigameStep : MinigameStep
 
         if (Input.GetMouseButtonDown(0))
         {
-            for (int i = 0; i < guidelines.Length; i++)
+            if (Mathf.Abs(knifeGO.transform.position.y - guidelines[numChops].transform.position.y) <= 0.1f && guidelines[numChops].activeInHierarchy == true)
             {
-                if (Mathf.Abs(knifeGO.transform.position.y - guidelines[i].transform.position.y) <= 0.1f && guidelines[i].activeInHierarchy == true)
+                guidelines[numChops].SetActive(false);
+                if (numChops + 1 < guidelines.Length)
                 {
-                    guidelines[i].SetActive(false);
-                    if (i+1 < guidelines.Length)
-                    {
-                        guidelines[i+1].SetActive(true); 
-                    }
-                    numChops++;
-                    chilliGO.GetComponent<SpriteRenderer>().sprite = chilliSprites[numChops];
+                    guidelines[numChops + 1].SetActive(true);
+                    audioSource.PlayOneShot(chopClip);
                 }
-                else
-                {
-                    failedChops++;
-                }
+                numChops++;
+                chilliGO.GetComponent<SpriteRenderer>().sprite = chilliSprites[numChops];
+                
+            }
+            else
+            {
+               failedChops++;
+               audioSource.PlayOneShot(bonkClip);
             }
 
             if (numChops >= numChopsRequired)
@@ -163,6 +169,7 @@ public class ChopChilliMinigameStep : MinigameStep
                 roundCounter++;
                 //Debug.Log("Chili chopping minigame completed!");
                 //OnMinigameStepOver.Invoke(this, MedalType.Gold);
+                audioSource.PlayOneShot(finalChopClip);
                 HandleChilliComplete();
             }
         }
