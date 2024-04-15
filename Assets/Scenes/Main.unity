@@ -172,6 +172,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4079414951535461121, guid: 0d351bd45d91c8c48a663de3abdba029, type: 3}
+      propertyPath: recipes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4079414951535461121, guid: 0d351bd45d91c8c48a663de3abdba029, type: 3}
       propertyPath: recipeSelectionPanel
       value: 
       objectReference: {fileID: 1880432063}
