@@ -95,7 +95,7 @@ public class ChopChilliMinigameStep : MinigameStep
                 if (Mathf.Abs(knifeGO.transform.position.y - guidelines[i].transform.position.y) <= 0.1f && guidelines[i].activeInHierarchy == true)
                 {
                     guidelines[i].SetActive(false);
-                    if (guidelines[i+1] != null)
+                    if (i+1 < guidelines.Length)
                     {
                         guidelines[i+1].SetActive(true); 
                     }
@@ -110,50 +110,5 @@ public class ChopChilliMinigameStep : MinigameStep
                 OnMinigameStepOver.Invoke(this, MedalType.Gold);
             }
         }
-        
-
-
-        /*if (isDragging)
-        {
-            Vector2 mousePos = Input.mousePosition;
-
-            if (ChopChili(mousePos))
-            {
-                numChops++;
-
-                chilliGO.GetComponent<SpriteRenderer>().sprite = chilliSprites[numChops];
-
-                isDragging = false;
-
-                if (numChops >= numChopsRequired)
-                {
-                    Debug.Log("Chili chopping minigame completed!");
-                    OnMinigameStepOver.Invoke(this, MedalType.Gold);
-                }
-            }
-
-            Debug.Log("Chop Chilli: " + ChopChili(mousePos));
-        }*/
-
-    }
-
-    private bool ChopChili(Vector2 mousePos)
-    {
-        // Get the rectTransform component of the chili image
-        //RectTransform rectTransform = chilliGO.rectTransform;
-
-        // Create a ray from the mouse position
-        Ray ray = Camera.main.ScreenPointToRay(mousePos);
-
-        // Raycast against the chili image
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
-
-        // Check if the raycast hit the chili image
-        if (hit.collider != null)
-        {
-            return true;
-        }
-
-        return false;
     }
 }
