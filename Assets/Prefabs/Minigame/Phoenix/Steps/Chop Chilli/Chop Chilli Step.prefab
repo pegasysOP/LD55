@@ -52,10 +52,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   chilliSprites:
-  - {fileID: 21300000, guid: ba9406d3c9670104da5604d05762ae9c, type: 3}
-  - {fileID: 21300000, guid: 0efc311a2383a2b4cb91a1bb283452ab, type: 3}
-  - {fileID: 21300000, guid: 647d8fa632701b74fb8a67ad4881952d, type: 3}
-  - {fileID: 21300000, guid: 35a8cf474d618724d806243e0f102a4c, type: 3}
+  - {fileID: 1906786856, guid: ba9406d3c9670104da5604d05762ae9c, type: 3}
+  - {fileID: 1613139920, guid: ba9406d3c9670104da5604d05762ae9c, type: 3}
+  - {fileID: -1660772426, guid: ba9406d3c9670104da5604d05762ae9c, type: 3}
+  - {fileID: -642777894, guid: ba9406d3c9670104da5604d05762ae9c, type: 3}
   chilliGO: {fileID: 4997372229746204343}
   TimerGO: {fileID: 1769158272638741006}
   timer: {fileID: 2538350462594052013}
@@ -451,12 +451,24 @@ PrefabInstance:
       value: Knife
       objectReference: {fileID: 0}
     - target: {fileID: 5908747051021382821, guid: c26290361fa75e84fbbeea4b8dd4ea08, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5908747051021382821, guid: c26290361fa75e84fbbeea4b8dd4ea08, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5908747051021382821, guid: c26290361fa75e84fbbeea4b8dd4ea08, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5908747051021382821, guid: c26290361fa75e84fbbeea4b8dd4ea08, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.607
+      value: -0.625
       objectReference: {fileID: 0}
     - target: {fileID: 5908747051021382821, guid: c26290361fa75e84fbbeea4b8dd4ea08, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.531
+      value: 1.161
       objectReference: {fileID: 0}
     - target: {fileID: 5908747051021382821, guid: c26290361fa75e84fbbeea4b8dd4ea08, type: 3}
       propertyPath: m_LocalPosition.z
@@ -489,6 +501,10 @@ PrefabInstance:
     - target: {fileID: 5908747051021382821, guid: c26290361fa75e84fbbeea4b8dd4ea08, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5908747051021382821, guid: c26290361fa75e84fbbeea4b8dd4ea08, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
