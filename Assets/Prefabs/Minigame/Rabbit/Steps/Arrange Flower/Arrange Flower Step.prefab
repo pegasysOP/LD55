@@ -542,6 +542,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3961645500190111838}
     m_Modifications:
+    - target: {fileID: -9091777325093611577, guid: ee5ec21f371e14d43b4dd90cd21fe966, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5648729883660389228, guid: ee5ec21f371e14d43b4dd90cd21fe966, type: 3}
       propertyPath: m_Name
       value: Petal Blue (1)
@@ -604,6 +608,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3961645500190111838}
     m_Modifications:
+    - target: {fileID: -9091777325093611577, guid: 961cb7dce40c08245821eac4d44cd8d1, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5648729883660389228, guid: 961cb7dce40c08245821eac4d44cd8d1, type: 3}
       propertyPath: m_Name
       value: Petal Red
@@ -666,6 +674,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3961645500190111838}
     m_Modifications:
+    - target: {fileID: -9091777325093611577, guid: 0c507608fe8806d49bf6b6958f3d0214, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5648729883660389228, guid: 0c507608fe8806d49bf6b6958f3d0214, type: 3}
       propertyPath: m_Name
       value: Petal Brown
@@ -728,6 +740,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3961645500190111838}
     m_Modifications:
+    - target: {fileID: -9091777325093611577, guid: ee5ec21f371e14d43b4dd90cd21fe966, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5648729883660389228, guid: ee5ec21f371e14d43b4dd90cd21fe966, type: 3}
       propertyPath: m_Name
       value: Petal Blue
@@ -1116,6 +1132,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3961645500190111838}
     m_Modifications:
+    - target: {fileID: -9091777325093611577, guid: 961cb7dce40c08245821eac4d44cd8d1, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5648729883660389228, guid: 961cb7dce40c08245821eac4d44cd8d1, type: 3}
       propertyPath: m_Name
       value: Petal Red (1)
@@ -1178,6 +1198,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3961645500190111838}
     m_Modifications:
+    - target: {fileID: -9091777325093611577, guid: 0c507608fe8806d49bf6b6958f3d0214, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5648729883660389228, guid: 0c507608fe8806d49bf6b6958f3d0214, type: 3}
       propertyPath: m_Name
       value: Petal Brown (2)
@@ -1302,6 +1326,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3961645500190111838}
     m_Modifications:
+    - target: {fileID: -9091777325093611577, guid: 0c507608fe8806d49bf6b6958f3d0214, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5648729883660389228, guid: 0c507608fe8806d49bf6b6958f3d0214, type: 3}
       propertyPath: m_Name
       value: Petal Brown (1)
