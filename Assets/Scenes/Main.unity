@@ -180,6 +180,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1880432063}
     - target: {fileID: 4079414951535461121, guid: 0d351bd45d91c8c48a663de3abdba029, type: 3}
+      propertyPath: recipes.Array.data[1].icon
+      value: 
+      objectReference: {fileID: 21300000, guid: eb038679deb2d574b8682cec7a3861df, type: 3}
+    - target: {fileID: 4079414951535461121, guid: 0d351bd45d91c8c48a663de3abdba029, type: 3}
+      propertyPath: recipes.Array.data[1].name
+      value: Phoenix
+      objectReference: {fileID: 0}
+    - target: {fileID: 4079414951535461121, guid: 0d351bd45d91c8c48a663de3abdba029, type: 3}
+      propertyPath: recipes.Array.data[2].icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 80a31ef9ecefc90468d97c47b89b6d1f, type: 3}
+    - target: {fileID: 4079414951535461121, guid: 0d351bd45d91c8c48a663de3abdba029, type: 3}
+      propertyPath: recipes.Array.data[2].name
+      value: Unicorn Bunny
+      objectReference: {fileID: 0}
+    - target: {fileID: 4079414951535461121, guid: 0d351bd45d91c8c48a663de3abdba029, type: 3}
       propertyPath: recipes.Array.data[0].score
       value: 1
       objectReference: {fileID: 0}
@@ -193,6 +209,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4079414951535461121, guid: 0d351bd45d91c8c48a663de3abdba029, type: 3}
       propertyPath: recipes.Array.data[1].minigame
+      value: 
+      objectReference: {fileID: 6621861678940073560, guid: e620029a5c1aab84c85c6fb31ab01ff0, type: 3}
+    - target: {fileID: 4079414951535461121, guid: 0d351bd45d91c8c48a663de3abdba029, type: 3}
+      propertyPath: recipes.Array.data[2].minigame
       value: 
       objectReference: {fileID: 3087967166412466418, guid: 959b3859956bdcf4985c8e960a4e7f4f, type: 3}
     - target: {fileID: 5960575531633722129, guid: 0d351bd45d91c8c48a663de3abdba029, type: 3}
