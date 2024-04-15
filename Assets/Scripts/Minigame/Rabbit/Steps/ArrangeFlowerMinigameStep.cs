@@ -9,11 +9,14 @@ public class ArrangeFlowerMinigameStep : MinigameStep
     public override event EventHandler<MedalType> OnMinigameStepOver;
 
     [SerializeField] Timer timer;
-    float timerDuration = 10f;
+    float timerDuration = 100f;
 
     bool isDragging = false;
 
     GameObject petal = null;
+
+    int numPetals = 3;
+    int currentPetalsMatched = 0;
 
     public override bool StartMinigameStep()
     {
@@ -43,6 +46,11 @@ public class ArrangeFlowerMinigameStep : MinigameStep
         }
         HandleInput();
         HandleFlowerDraggingLogic();
+
+        if(currentPetalsMatched == numPetals)
+        {
+            OnMinigameStepOver.Invoke(this, MedalType.Jade);
+        }
     }
 
     void HandleFlowerDraggingLogic()
@@ -68,6 +76,14 @@ public class ArrangeFlowerMinigameStep : MinigameStep
         }
     }
 
+    public void IncrementPetalsMatched(GameObject flower)
+    {
+        flower.GetComponent<PolygonCollider2D>().enabled = false;
+        currentPetalsMatched += 1;
+        Debug.Log("Current matched: " + currentPetalsMatched);
+    }
+    
+
     void HandleInput()
     {
         if (Input.GetMouseButtonDown(0))
@@ -92,7 +108,7 @@ public class ArrangeFlowerMinigameStep : MinigameStep
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
 
         // Check if the raycast hit the petal
-        if (hit.collider != null)
+        if (hit.collider != null && this.tag != "PetalOutline" )
         {
             return hit.collider.gameObject;
         }

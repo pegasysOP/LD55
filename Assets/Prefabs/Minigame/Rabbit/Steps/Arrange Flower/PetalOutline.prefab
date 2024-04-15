@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 8508416861095058769}
   - component: {fileID: -1892418517239462126}
   - component: {fileID: -5143088826965125950}
+  - component: {fileID: 6142869803435667161}
   m_Layer: 0
   m_Name: PetalOutline
-  m_TagString: Untagged
+  m_TagString: PetalOutline
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,3 +121,15 @@ CircleCollider2D:
   m_Offset: {x: -0.92, y: 0.79}
   serializedVersion: 2
   m_Radius: 0.09969437
+--- !u!114 &6142869803435667161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5747454203553123127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9593a175143938c43823708e9914cbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

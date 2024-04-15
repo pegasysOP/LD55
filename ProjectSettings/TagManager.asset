@@ -10,6 +10,7 @@ TagManager:
   - Undefined
   - PetalBrown
   - PetalBlue
+  - PetalOutline
   layers:
   - Default
   - TransparentFX
