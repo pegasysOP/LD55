@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -50,11 +51,19 @@ public class FillMouldMinigameStep : MinigameStep
 
         if(flowRateSlider.value == 0 && fillAmount >= 0.95)
         {
-            MedalType medal = GetMedalTypeFromFill(fillAmount);
-            OnMinigameStepOver.Invoke(this, medal);
+            StartCoroutine(WaitThenEnd());
         }
 
         flaskTransform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.Euler(0, 0, -45 + flowRateSlider.value * 45));
+    }
+
+    private IEnumerator WaitThenEnd()
+    {
+        timer.StopTimer();
+
+        yield return new WaitForSeconds(1f);
+
+        OnMinigameStepOver.Invoke(this, MedalType.Jade);
     }
 
     private MedalType GetMedalTypeFromFill(float fill)

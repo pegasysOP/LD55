@@ -391,8 +391,8 @@ MonoBehaviour:
   chiselTransform: {fileID: 3351082614697180267}
   timer: {fileID: 2711116265979931105}
   debugText: {fileID: 8683968343676398704}
-  numberOfRounds: 3
-  timerDuration: 10
+  numberOfRounds: 4
+  timerDuration: 8
   angleTolerance: 20
   geodeRotationSpeed: 180
   geodeNormalSprite: {fileID: 21300000, guid: 2b14a816910105f41b88e4fb55b3bf5e, type: 3}

@@ -464,9 +464,9 @@ MonoBehaviour:
   furnaceImage: {fileID: 4050145170844493468}
   heatSlider: {fileID: 2107895151397432824}
   timer: {fileID: 1493190873513971498}
-  timerDuration: 10
-  coolingRate: 35
-  heatingRate: 45
+  timerDuration: 6
+  coolingRate: 30
+  heatingRate: 40
   heatRegions:
   - Colour: {r: 0.9058824, g: 0.5372549, b: 0.3254902, a: 1}
     Width: 5

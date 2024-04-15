@@ -97,7 +97,16 @@ public class GeodeMinigameStep : MinigameStep
 
         Debug.Log($"GEODE COMPLETE, SCORE: {score}, MEDAL: {GetMedalTypeFromScore(score)}");
 
-        OnMinigameStepOver.Invoke(this, GetMedalTypeFromScore(score));
+        StartCoroutine(WaitThenEnd(GetMedalTypeFromScore(score)));
+    }
+
+    private IEnumerator WaitThenEnd(MedalType score)
+    {
+        timer.StopTimer();
+
+        yield return new WaitForSeconds(0.5f);
+
+        OnMinigameStepOver.Invoke(this, score);
     }
 
     private MedalType GetMedalTypeFromScore(int score)
