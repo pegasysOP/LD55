@@ -45,6 +45,9 @@ public class ChopChilliMinigameStep : MinigameStep
     void Start()
     {
         chilliGO.GetComponent<SpriteRenderer>().sprite = chilliSprites[numChops];
+        guidelines[1].SetActive(false);
+        guidelines[2].SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -92,6 +95,10 @@ public class ChopChilliMinigameStep : MinigameStep
                 if (Mathf.Abs(knifeGO.transform.position.y - guidelines[i].transform.position.y) <= 0.1f && guidelines[i].activeInHierarchy == true)
                 {
                     guidelines[i].SetActive(false);
+                    if (guidelines[i+1] != null)
+                    {
+                        guidelines[i+1].SetActive(true); 
+                    }
                     numChops++;
                     chilliGO.GetComponent<SpriteRenderer>().sprite = chilliSprites[numChops];
                 }
