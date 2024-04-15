@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7985663543661568584}
   - component: {fileID: 8202104026790632071}
   m_Layer: 0
-  m_Name: Petal
+  m_Name: PetalBlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 71454841518e6ea47966d957e4bfaa43, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 69d9bcb5ad30cef41bed63f3c658397a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
