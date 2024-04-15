@@ -15,7 +15,7 @@ public class ArrangeFlowerMinigameStep : MinigameStep
 
     GameObject petal = null;
 
-    int numPetals = 3;
+    [SerializeField] private int numPetals = 7;
     int currentPetalsMatched = 0;
 
     public override bool StartMinigameStep()

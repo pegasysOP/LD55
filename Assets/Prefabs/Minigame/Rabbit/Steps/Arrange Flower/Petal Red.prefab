@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5364083674798606968}
   - component: {fileID: -9091777325093611577}
   m_Layer: 0
-  m_Name: PetalBrown
-  m_TagString: PetalBrown
+  m_Name: Petal Red
+  m_TagString: PetalRed
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c673643e1cb7acd4994a333b7d63273e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 71454841518e6ea47966d957e4bfaa43, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -131,13 +131,14 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 0.125, y: 0.25}
-      - {x: -0.375, y: 0.25}
-      - {x: -0.46875, y: 0.09375}
-      - {x: -0.46875, y: -0.25}
-      - {x: 0.375, y: -0.25}
-      - {x: 0.4375, y: -0.1875}
-      - {x: 0.4375, y: 0}
-      - {x: 0.40625, y: 0.15625}
+      - {x: -0.25, y: 0.21875}
+      - {x: -0.4375, y: 0.0625}
+      - {x: -0.4375, y: -0.125}
+      - {x: -0.28125, y: -0.21875}
+      - {x: 0.34375, y: -0.21875}
+      - {x: 0.4375, y: -0.0625}
+      - {x: 0.4375, y: 0.1875}
+      - {x: 0.3125, y: 0.25}
   m_UseDelaunayMesh: 0
 --- !u!50 &-9091777325093611577
 Rigidbody2D:

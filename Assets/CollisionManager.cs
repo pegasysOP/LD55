@@ -12,7 +12,8 @@ public class CollisionManager : MonoBehaviour
     public enum PetalType
     {
         Brown,
-        Blue
+        Blue,
+        Red
     }
 
     [SerializeField] PetalType recepticleType = PetalType.Brown;
@@ -31,7 +32,6 @@ public class CollisionManager : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        
         if(collision.tag == "PetalBrown" && recepticleType == PetalType.Brown)
         {
             flowerMinigameStep.IncrementPetalsMatched(collision.gameObject);
@@ -41,6 +41,11 @@ public class CollisionManager : MonoBehaviour
         {
             flowerMinigameStep.IncrementPetalsMatched(collision.gameObject);
             Debug.Log("Triggered by PetalBlue");
+        }
+        if (collision.tag == "PetalRed" && recepticleType == PetalType.Red)
+        {
+            flowerMinigameStep.IncrementPetalsMatched(collision.gameObject);
+            Debug.Log("Triggered by PetalRed");
         }
     }
 
