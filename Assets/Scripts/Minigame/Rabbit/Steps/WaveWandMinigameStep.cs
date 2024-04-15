@@ -17,6 +17,8 @@ public class WaveWandMinigameStep : MinigameStep
 
     GameObject[] checkpointsLeft;
 
+    GameObject previousActivated = null;
+
     private int numCheckpoints;
     private int checkPointsHit;
 
@@ -79,7 +81,7 @@ public class WaveWandMinigameStep : MinigameStep
                         checkpointsLeft[i] = null;
                     }
                 }
-                checkPointsHit += 1;
+                //checkPointsHit += 1;
                 go = null;
             }
         }
@@ -112,6 +114,11 @@ public class WaveWandMinigameStep : MinigameStep
         }
     }
 
+    public void IncrementCheckpoint()
+    {
+        checkPointsHit += 1;
+    }
+
     private GameObject HitCheckpoint(Vector2 mousePos)
     {
         // Get the rectTransform component of the chili image
@@ -126,7 +133,6 @@ public class WaveWandMinigameStep : MinigameStep
         // Check if the raycast hit the petal
         if (hit.collider != null)
         {
-            Debug.Log("Hit checkpoint");
             return hit.collider.gameObject;
         }
 
