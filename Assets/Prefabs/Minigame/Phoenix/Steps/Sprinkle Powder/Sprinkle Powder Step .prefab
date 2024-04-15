@@ -199,6 +199,8 @@ MonoBehaviour:
   TimerGO: {fileID: 8777522299233441026}
   powderGO: {fileID: 6349564694642049116, guid: cefffbb4fdc54d84088f8f3243fbe9fe, type: 3}
   PowderFilledSlider: {fileID: 4496712933873766590}
+  containerGO: {fileID: 5788612787193112611}
+  guidelineGO: {fileID: 8894216555255920666}
 --- !u!1 &6803126612711203919
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,6 +776,11 @@ PrefabInstance:
 --- !u!4 &1200864931326836462 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8097221551507616144, guid: e2230de13418ca745a4727334b6ae415, type: 3}
+  m_PrefabInstance: {fileID: 6986569919391993726}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8894216555255920666 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1989415133795284836, guid: e2230de13418ca745a4727334b6ae415, type: 3}
   m_PrefabInstance: {fileID: 6986569919391993726}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8039189292675081732

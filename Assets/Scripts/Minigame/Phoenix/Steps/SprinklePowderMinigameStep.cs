@@ -22,6 +22,11 @@ public class SprinklePowderMinigameStep : MinigameStep
 
     [SerializeField] Slider PowderFilledSlider;
 
+    [SerializeField] GameObject containerGO;
+    [SerializeField] GameObject guidelineGO;
+
+    bool moveLeft;
+
     public override bool StartMinigameStep()
     {
         Debug.Log("Sprinkle Powder Minigame step started");
@@ -68,6 +73,35 @@ public class SprinklePowderMinigameStep : MinigameStep
         HandleInput();
         sprinkleTimer -= Time.deltaTime;
         DestroyPowderOnExit();
+        //MoveBowl();
+    }
+
+    void MoveBowl()
+    {
+        if (moveLeft)
+        {
+            if(containerGO.transform.position.x > -5)
+            {
+                containerGO.transform.Translate(new Vector3(-2 * Time.deltaTime, 0, 0));
+                guidelineGO.transform.Translate(new Vector3(-2 * Time.deltaTime, 0, 0));
+            }
+            else
+            {
+                moveLeft = false;
+            }
+        }
+        else
+        {
+            if (containerGO.transform.position.x < 5)
+            {
+                containerGO.transform.Translate(new Vector3(2 * Time.deltaTime, 0, 0));
+                guidelineGO.transform.Translate(new Vector3(2 * Time.deltaTime, 0, 0));
+            }
+            else
+            {
+                moveLeft = true;
+            }
+        }
     }
 
     void HandleInput()
