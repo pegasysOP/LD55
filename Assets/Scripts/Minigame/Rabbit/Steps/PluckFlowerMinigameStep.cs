@@ -9,7 +9,7 @@ public class PluckFlowerMinigameStep : MinigameStep
     public override event EventHandler<MedalType> OnMinigameStepOver;
     
     [SerializeField] Timer timer;
-    float timerDuration = 10f;
+    float timerDuration = 15f;
 
     [SerializeField] GameObject[] petals;
 
