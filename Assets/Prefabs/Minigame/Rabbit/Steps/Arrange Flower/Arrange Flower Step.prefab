@@ -167,6 +167,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PetalOutline (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6142869803435667161, guid: b15ba3f28128f204b9c2fa9b760c7fd4, type: 3}
+      propertyPath: recepticleType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8508416861095058769, guid: b15ba3f28128f204b9c2fa9b760c7fd4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.8
@@ -361,6 +365,10 @@ PrefabInstance:
     - target: {fileID: 5747454203553123127, guid: b15ba3f28128f204b9c2fa9b760c7fd4, type: 3}
       propertyPath: m_Name
       value: PetalOutline
+      objectReference: {fileID: 0}
+    - target: {fileID: 6142869803435667161, guid: b15ba3f28128f204b9c2fa9b760c7fd4, type: 3}
+      propertyPath: acceptBrown
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8508416861095058769, guid: b15ba3f28128f204b9c2fa9b760c7fd4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -609,6 +617,10 @@ PrefabInstance:
     - target: {fileID: 5747454203553123127, guid: b15ba3f28128f204b9c2fa9b760c7fd4, type: 3}
       propertyPath: m_Name
       value: PetalOutline (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6142869803435667161, guid: b15ba3f28128f204b9c2fa9b760c7fd4, type: 3}
+      propertyPath: acceptBrown
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8508416861095058769, guid: b15ba3f28128f204b9c2fa9b760c7fd4, type: 3}
       propertyPath: m_LocalPosition.x

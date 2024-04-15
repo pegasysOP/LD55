@@ -6,6 +6,17 @@ public class CollisionManager : MonoBehaviour
 {
 
     ArrangeFlowerMinigameStep flowerMinigameStep;
+
+    //[SerializeField] bool acceptBrown = false;
+
+    public enum PetalType
+    {
+        Brown,
+        Blue
+    }
+
+    [SerializeField] PetalType recepticleType = PetalType.Brown;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,12 +32,12 @@ public class CollisionManager : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         
-        if(collision.tag == "PetalBrown")
+        if(collision.tag == "PetalBrown" && recepticleType == PetalType.Brown)
         {
             flowerMinigameStep.IncrementPetalsMatched(collision.gameObject);
             Debug.Log("Triggered by PetalBrown");
         }
-        if (collision.tag == "PetalBlue")
+        if (collision.tag == "PetalBlue" && recepticleType == PetalType.Blue)
         {
             flowerMinigameStep.IncrementPetalsMatched(collision.gameObject);
             Debug.Log("Triggered by PetalBlue");
