@@ -119,7 +119,7 @@ public class ArrangeFlowerMinigameStep : MinigameStep
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
 
         // Check if the raycast hit the petal
-        if (hit.collider != null && this.tag != "PetalOutline" )
+        if (hit.collider != null && hit.collider.tag != "PetalOutline" )
         {
             return hit.collider.gameObject;
         }

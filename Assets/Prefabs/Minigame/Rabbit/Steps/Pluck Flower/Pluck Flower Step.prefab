@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   timer: {fileID: 1100358671018364490}
+  timerDuration: 8
   petals:
   - {fileID: 939462377504724460}
   - {fileID: 2461225705271996135}
