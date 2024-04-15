@@ -91,7 +91,12 @@ public class MixCouldronMinigateStep : MinigameStep
             }
             StirPot();
         }
-        
+
+        if (StirCompletionSlider.value == StirCompletionSlider.maxValue)
+        {
+            OnMinigameStepOver.Invoke(this, MedalType.Jade);
+        }
+
     }
 
     void StirPot()
