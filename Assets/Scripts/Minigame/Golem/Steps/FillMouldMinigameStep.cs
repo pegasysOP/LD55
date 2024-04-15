@@ -42,10 +42,20 @@ public class FillMouldMinigameStep : MinigameStep
         fillAmount += flowRateSlider.value * Time.deltaTime;
         filledAmountSlider.value = fillAmount > 1f ? 1f : fillAmount;
 
-        if (fillAmount >= 1 + overFillAllowance)
+        if (fillAmount >= 1f + overFillAllowance)
         {
+            Debug.Log("Fill amount: " + fillAmount);
+            Debug.Log("Allowance: " + (1 + overFillAllowance));
             //Minigame should fail if the heat completely dissapears or reaches the maximum
             OnMinigameStepOver.Invoke(this, MedalType.None);
+        }
+
+        if(flowRateSlider.value == 0 && fillAmount >= 0.95)
+        {
+            Debug.Log("Fill amount: " + fillAmount);
+            Debug.Log("Allowance: " + (1 + overFillAllowance));
+            MedalType medal = GetMedalTypeFromFill(fillAmount);
+            OnMinigameStepOver.Invoke(this, medal);
         }
 
         flaskTransform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.Euler(0, 0, -45 + flowRateSlider.value * 45));
