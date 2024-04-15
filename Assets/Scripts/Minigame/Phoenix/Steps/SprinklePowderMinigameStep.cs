@@ -71,12 +71,14 @@ public class SprinklePowderMinigameStep : MinigameStep
 
     void HandleInput()
     {
+        #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Space))
         {
             DestroyPowder();
             Debug.Log("Sprinkle Powder Minigame step complete");
             OnMinigameStepOver.Invoke(this, MedalType.Bronze);
         }
+        #endif
         if (Input.GetMouseButton(0))
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

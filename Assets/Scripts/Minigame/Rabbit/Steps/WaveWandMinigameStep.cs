@@ -54,11 +54,13 @@ public class WaveWandMinigameStep : MinigameStep
     // Update is called once per frame
     void Update()
     {
+        #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Wave wand Minigame step complete");
             OnMinigameStepOver.Invoke(this, MedalType.Bronze);
         }
+        #endif
 
         HandleInput();
 

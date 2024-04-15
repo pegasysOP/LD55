@@ -41,11 +41,13 @@ public class PluckFlowerMinigameStep : MinigameStep
     // Update is called once per frame
     void Update()
     {
+        #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Pluck Flower Minigame step complete");
             OnMinigameStepOver.Invoke(this, MedalType.Bronze);
         }
+        #endif
 
         HandlePluckLogic();
 
