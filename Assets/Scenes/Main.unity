@@ -176,6 +176,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1880432063}
     - target: {fileID: 4079414951535461121, guid: 0d351bd45d91c8c48a663de3abdba029, type: 3}
+      propertyPath: recipes.Array.data[0].score
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4079414951535461121, guid: 0d351bd45d91c8c48a663de3abdba029, type: 3}
+      propertyPath: recipes.Array.data[1].score
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4079414951535461121, guid: 0d351bd45d91c8c48a663de3abdba029, type: 3}
       propertyPath: recipes.Array.data[1].minigame
       value: 
       objectReference: {fileID: 3087967166412466418, guid: 959b3859956bdcf4985c8e960a4e7f4f, type: 3}
