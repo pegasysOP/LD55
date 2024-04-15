@@ -67,7 +67,7 @@ public class GeodeMinigameStep : MinigameStep
         trackingMouse = false;
         chiselInRange = false;
 
-        roundCounter = 0;
+        roundCounter = 1;
         missCounter = 0;
 
         timer.StartTimer(timerDuration, OnTimerFinished);
@@ -90,7 +90,7 @@ public class GeodeMinigameStep : MinigameStep
         int score = 4;
 
         // each round not complete
-        score -= numberOfRounds + 1 - roundCounter;
+        score -= (numberOfRounds - (roundCounter - 1));
 
         // each miss
         score -= missCounter;
@@ -125,8 +125,6 @@ public class GeodeMinigameStep : MinigameStep
 
     private void StartNewGeode()
     {
-        roundCounter++;
-
         geodeSprite.sprite = geodeNormalSprite;
 
         SetLineRotation();
@@ -136,7 +134,9 @@ public class GeodeMinigameStep : MinigameStep
 
     private void HandleGeodeComplete()
     {
-        if (roundCounter >= numberOfRounds)
+        roundCounter++;
+
+        if (roundCounter > numberOfRounds)
             HandleMinigameComplete();
         else
             StartNewGeode();
