@@ -7,10 +7,19 @@ public class ArrangeFlowerMinigameStep : MinigameStep
 {
     public override event EventHandler<MedalType> OnMinigameStepOver;
 
+    [SerializeField] Timer timer;
+    float timerDuration = 10f;
+
     public override bool StartMinigameStep()
     {
         Debug.Log("Arrange flower minigame started");
+        timer.StartTimer(timerDuration, OnTimerFinished);
         return true;
+    }
+
+    void OnTimerFinished()
+    {
+        OnMinigameStepOver.Invoke(this, MedalType.None);
     }
 
     // Start is called before the first frame update
