@@ -21,6 +21,14 @@ public class GameManager : MonoBehaviour
         ShowMenu();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
+
     private void ShowMenu()
     {
         recipeSelectionPanel.Init(recipes);

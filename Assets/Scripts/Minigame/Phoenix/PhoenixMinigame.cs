@@ -20,6 +20,7 @@ public class PhoenixMinigame : Minigame
     {
         medalSprite.sprite = GetMedalSpriteFromScore(score);
         medalSprite.gameObject.SetActive(true);
+        AudioManager.instance.PlayGameFinishSound();
 
         yield return new WaitForSeconds(1f);
 
