@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class RabbitMinigame : Minigame
@@ -11,6 +12,23 @@ public class RabbitMinigame : Minigame
         minigameStepInstance.OnMinigameStepOver -= OnMinigameStepOver;
         Destroy(minigameStepInstance.gameObject);
 
+        StartCoroutine(ShowMedalThenDoStuff(score));
+    }
+
+    private IEnumerator ShowMedalThenDoStuff(MedalType score)
+    {
+        medalSprite.sprite = GetMedalSpriteFromScore(score);
+        medalSprite.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+        medalSprite.gameObject.SetActive(false);
+
+        DoStuff(score);
+    }
+
+    private void DoStuff(MedalType score)
+    {
         //If there are more steps then get the next step and start it 
         if (steps.Count > 0)
             StartMinigameStep();

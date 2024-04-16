@@ -6,6 +6,13 @@ public abstract class Minigame : MonoBehaviour
 {
     [SerializeField] protected List<MinigameStep> steps;
 
+    [SerializeField] protected SpriteRenderer medalSprite;
+    [SerializeField] protected Sprite failSprite;
+    [SerializeField] protected Sprite bronzeSprite;
+    [SerializeField] protected Sprite silverSprite;
+    [SerializeField] protected Sprite goldSprite;
+    [SerializeField] protected Sprite jadeSprite;
+
     protected List<MedalType> medals;
 
     protected MinigameStep minigameStepInstance;
@@ -55,5 +62,22 @@ public abstract class Minigame : MonoBehaviour
             StartMinigameStep();
         else
             OnMinigameOver.Invoke(this, score);
+    }
+
+    protected Sprite GetMedalSpriteFromScore(MedalType score)
+    {
+        switch(score)
+        {
+            case MedalType.Jade:
+                return jadeSprite;
+            case MedalType.Gold:
+                return goldSprite;
+            case MedalType.Silver:
+                return silverSprite;
+            case MedalType.Bronze:
+                return bronzeSprite;
+            default:
+                return failSprite;
+        }
     }
 }

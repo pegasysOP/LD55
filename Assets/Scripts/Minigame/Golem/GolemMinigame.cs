@@ -1,6 +1,5 @@
 using System;
-using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using System.Collections;
 using UnityEngine;
 
 public class GolemMinigame : Minigame
@@ -9,10 +8,28 @@ public class GolemMinigame : Minigame
     protected override void OnMinigameStepOver(object sender, MedalType score)
     {
         medals.Add(score);
-        
+
         minigameStepInstance.OnMinigameStepOver -= OnMinigameStepOver;
         Destroy(minigameStepInstance.gameObject);
 
+
+        StartCoroutine(ShowMedalThenDoStuff(score));
+    }
+
+    private IEnumerator ShowMedalThenDoStuff(MedalType score)
+    {
+        medalSprite.sprite = GetMedalSpriteFromScore(score);
+        medalSprite.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+        medalSprite.gameObject.SetActive(false);
+
+        DoStuff(score);
+    }
+
+    private void DoStuff(MedalType score)
+    {
         //If there are more steps then get the next step and start it 
         if (steps.Count > 0)
             StartMinigameStep();
